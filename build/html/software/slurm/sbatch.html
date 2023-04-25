@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sbatch &mdash; Chen Lab HPC User Guide  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="salloc" href="salloc.html" />
+    <link rel="prev" title="Slurm使用帮助" href="slurm.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Chen Lab HPC User Guide
+          </a>
+              <div class="version">
+                v1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../node.html">现有节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../connect_node.html">连接集群</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../submit_job.html">提交作业</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">软件</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="slurm.html">Slurm使用帮助</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">sbatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="salloc.html">salloc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sinfo.html">sinfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="squeue.html">squeue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sacct.html">sacct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scancel.html">scancel</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../module/module.html">Module使用帮助</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../anaconda/anaconda.html">Conda使用帮助</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../singularity/singularity.html">Singularity使用帮助</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../mirror/index.html">镜像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chen Lab HPC User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">软件</a></li>
+          <li class="breadcrumb-item"><a href="slurm.html">Slurm使用帮助</a></li>
+      <li class="breadcrumb-item active">sbatch</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/software/slurm/sbatch.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sbatch">
+<h1>sbatch<a class="headerlink" href="#sbatch" title="Permalink to this heading"></a></h1>
+<p>将整个计算过程，写到脚本中，通过<code class="docutils literal notranslate"><span class="pre">sbatch</span></code>指令提交到计算节点上执行</p>
+<p>先介绍一个简单的例子，随后介绍例子中涉及的参数，接着介绍<code class="docutils literal notranslate"><span class="pre">sbatch</span></code>其他一些常见参数，最后再介绍GPU和MPI跨节点作业案例。</p>
+<p><strong>首先是一个简单的例子</strong></p>
+<ul class="simple">
+<li><p>假设我们的计算过程为：在计算节点上运行<code class="docutils literal notranslate"><span class="pre">hostname</span></code>指令，那么就可以这么编写作业脚本；</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH -o job.%j.out</span>
+<span class="c1">#SBATCH -p compute</span>
+<span class="c1">#SBATCH -J myFirstJob</span>
+<span class="c1">#SBATCH --nodes=1 </span>
+<span class="c1">#SBATCH --ntasks-per-node=1</span>
+
+<span class="n">hostname</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>假设上面作业脚本的文件名为job.sh，通过以下命令提交 <code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">job.sh</span></code></p></li>
+<li><p><strong>随后我们介绍脚本中涉及的参数</strong></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">o</span> <span class="n">job</span><span class="o">.%</span><span class="n">j</span><span class="o">.</span><span class="n">out</span>       <span class="c1"># 脚本执行的输出将被保存在当job.%j.out文件下，%j表示作业号;</span>
+<span class="o">-</span><span class="n">p</span> <span class="n">compute</span>       <span class="c1"># 作业提交的指定分区为compute；</span>
+<span class="o">-</span><span class="n">J</span> <span class="n">myFirstJob</span>       <span class="c1"># 作业在调度系统中的作业名为myFirstJob;</span>
+<span class="o">--</span><span class="n">nodes</span><span class="o">=</span><span class="mi">1</span>           <span class="c1"># 申请节点数为1,如果作业不能跨节点(MPI)运行, 申请的节点数应不超过1;</span>
+<span class="o">--</span><span class="n">ntasks</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># 每个节点上运行一个任务，默认一情况下也可理解为每个节点使用一个核心，如果程序不支持多线程(如openmp)，这个数不应该超过1；</span>
+</pre></div>
+</div>
+<p>其中：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code> 指定作业的运行分区，提交作业时必须指定分区，每个分区有不同的属性，如普通计算节点<code class="docutils literal notranslate"><span class="pre">compute</span></code>分区，每个节点核心数为32，内存为384G，通过以下命令可以查看对应集群可用分区，也可以通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>查看分区的空闲状态；</p></li>
+</ul>
+<p>除此之外，还有一些常见的参数；</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">help</span>    <span class="c1"># 显示帮助信息；</span>
+<span class="o">-</span><span class="n">A</span> <span class="o">&lt;</span><span class="n">account</span><span class="o">&gt;</span>    <span class="c1"># 指定计费账户；</span>
+<span class="o">-</span><span class="n">D</span><span class="p">,</span> <span class="o">--</span><span class="n">chdir</span><span class="o">=&lt;</span><span class="n">directory</span><span class="o">&gt;</span>      <span class="c1"># 指定工作目录；</span>
+<span class="o">--</span><span class="n">get</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">env</span>    <span class="c1"># 获取当前的环境变量；</span>
+<span class="o">--</span><span class="n">gres</span><span class="o">=&lt;</span><span class="nb">list</span><span class="o">&gt;</span>    <span class="c1"># 使用gpu这类资源，如申请两块gpu则--gres=gpu:2</span>
+<span class="o">-</span><span class="n">J</span><span class="p">,</span> <span class="o">--</span><span class="n">job</span><span class="o">-</span><span class="n">name</span><span class="o">=&lt;</span><span class="n">jobname</span><span class="o">&gt;</span>    <span class="c1"># 指定该作业的作业名；</span>
+<span class="o">--</span><span class="n">mail</span><span class="o">-</span><span class="nb">type</span><span class="o">=&lt;</span><span class="nb">type</span><span class="o">&gt;</span>    <span class="c1"># 指定状态发生时，发送邮件通知，有效种类为（NONE, BEGIN, END, FAIL, REQUEUE, ALL）；</span>
+<span class="o">--</span><span class="n">mail</span><span class="o">-</span><span class="n">user</span><span class="o">=&lt;</span><span class="n">user</span><span class="o">&gt;</span>    <span class="c1"># 发送给指定邮箱；</span>
+<span class="o">-</span><span class="n">n</span><span class="p">,</span> <span class="o">--</span><span class="n">ntasks</span><span class="o">=&lt;</span><span class="n">number</span><span class="o">&gt;</span>    <span class="c1"># sbatch并不会执行任务，当需要申请相应的资源来运行脚本，默认情况下一个任务一个核心，--cpus-per-task参数可以修改该默认值；</span>
+<span class="o">-</span><span class="n">c</span><span class="p">,</span> <span class="o">--</span><span class="n">cpus</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">task</span><span class="o">=&lt;</span><span class="n">ncpus</span><span class="o">&gt;</span>      <span class="c1"># 每个任务所需要的核心数，默认为1；</span>
+<span class="o">--</span><span class="n">ntasks</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=&lt;</span><span class="n">ntasks</span><span class="o">&gt;</span>    <span class="c1"># 每个节点的任务数，--ntasks参数的优先级高于该参数，如果使用--ntasks这个参数，那么将会变为每个节点最多运行的任务数；</span>
+<span class="o">-</span><span class="n">o</span><span class="p">,</span> <span class="o">--</span><span class="n">output</span><span class="o">=&lt;</span><span class="n">filename</span> <span class="n">pattern</span><span class="o">&gt;</span>    <span class="c1"># 输出文件，作业脚本中的输出将会输出到该文件；</span>
+<span class="o">-</span><span class="n">p</span><span class="p">,</span> <span class="o">--</span><span class="n">partition</span><span class="o">=&lt;</span><span class="n">partition_names</span><span class="o">&gt;</span>    <span class="c1"># 将作业提交到对应分区；</span>
+<span class="o">-</span><span class="n">q</span><span class="p">,</span> <span class="o">--</span><span class="n">qos</span><span class="o">=&lt;</span><span class="n">qos</span><span class="o">&gt;</span>    <span class="c1"># 指定QOS；</span>
+<span class="o">-</span><span class="n">t</span><span class="p">,</span> <span class="o">--</span><span class="n">time</span><span class="o">=&lt;</span><span class="n">time</span><span class="o">&gt;</span>    <span class="c1"># 允许作业运行的最大时间，目前未名一号和生科一号为5天，教学一号为两天；</span>
+<span class="o">-</span><span class="n">w</span><span class="p">,</span> <span class="o">--</span><span class="n">nodelist</span><span class="o">=&lt;</span><span class="n">node</span> <span class="n">name</span> <span class="nb">list</span><span class="o">&gt;</span>  <span class="c1"># 指定申请的节点；</span>
+<span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="o">--</span><span class="n">exclude</span><span class="o">=&lt;</span><span class="n">node</span> <span class="n">name</span> <span class="nb">list</span><span class="o">&gt;</span>   <span class="c1"># 排除指定的节点；</span>
+</pre></div>
+</div>
+<p><strong>接下来是一个GPU作业的例子</strong></p>
+<p><strong>请注意，GPU节点请按照 GPU:CPU = 1:16 的比例提交任务</strong></p>
+<ul class="simple">
+<li><p>假设我们想要申请一块GPU卡，并通过指令nvidia-smi来查看申请到GPU卡的信息，那么可以这么编写作业脚本</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH -o job.%j.out</span>
+<span class="c1">#SBATCH --partition=gpu</span>
+<span class="c1">#SBATCH -J myFirstGPUJob</span>
+<span class="c1">#SBATCH --nodes=1             </span>
+<span class="c1">#SBATCH --ntasks-per-node=16</span>
+<span class="c1">#SBATCH --gres=gpu:1             </span>
+
+<span class="n">nvidia</span><span class="o">-</span><span class="n">smi</span>
+</pre></div>
+</div>
+<p>脚本中的一些参数说明如下</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --partition=gpu      # 作业提交的指定分区为gpu;</span>
+<span class="c1">#SBATCH --gres=gpu:1         # 每个节点上申请一块GPU卡</span>
+</pre></div>
+</div>
+<p><strong>最后是一个跨节点多核心的例子</strong>
+假设我们想用两个节点，每个节点32个核心来运行vasp，那么可以这么编写作业脚本</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH -o job.%j.out</span>
+<span class="c1">#SBATCH --partition=compute</span>
+<span class="c1">#SBATCH -J myFirstMPIJob</span>
+<span class="c1">#SBATCH --nodes=2</span>
+<span class="c1">#SBATCH --ntasks-per-node=32</span>
+
+<span class="c1"># 导入MPI运行环境</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">openmpi4</span><span class="o">/</span><span class="mf">4.1.1</span>
+
+<span class="c1"># 导入MPI应用程序</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">mvapich2</span><span class="o">/</span><span class="mf">2.3.6</span>
+
+<span class="c1"># 生成 machinefile</span>
+<span class="n">srun</span> <span class="n">hostname</span> <span class="o">-</span><span class="n">s</span> <span class="o">|</span> <span class="n">sort</span> <span class="o">-</span><span class="n">n</span> <span class="o">&gt;</span><span class="n">slurm</span><span class="o">.</span><span class="n">hosts</span>
+
+<span class="c1"># 执行MPI并行计算程序</span>
+<span class="n">mpirun</span> <span class="o">-</span><span class="n">n</span> <span class="mi">64</span> <span class="o">-</span><span class="n">machinefile</span> <span class="n">slurm</span><span class="o">.</span><span class="n">hosts</span> <span class="n">vasp_std</span> <span class="o">&gt;</span> <span class="n">log</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="slurm.html" class="btn btn-neutral float-left" title="Slurm使用帮助" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="salloc.html" class="btn btn-neutral float-right" title="salloc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, LVCS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

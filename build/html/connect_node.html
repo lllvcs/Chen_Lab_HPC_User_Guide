@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>连接集群 &mdash; Chen Lab HPC User Guide  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="提交作业" href="submit_job.html" />
+    <link rel="prev" title="快速入门" href="start.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Chen Lab HPC User Guide
+          </a>
+              <div class="version">
+                v1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="node.html">现有节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="start.html">快速入门</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">连接集群</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#linux-mac">Linux\Mac登录和传输数据</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#windows">Windows用户使用客户端</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="submit_job.html">提交作业</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software/index.html">软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mirror/index.html">镜像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Chen Lab HPC User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">连接集群</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/connect_node.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>连接集群<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p>登陆节点地址为：<code class="docutils literal notranslate"><span class="pre">10.20.252.1</span></code>和<code class="docutils literal notranslate"><span class="pre">10.20.252.2</span></code>，端口号为<code class="docutils literal notranslate"><span class="pre">22</span></code></p></li>
+<li><p>Linux\Mac用户直接使用电脑自带的命令行终端通过ssh登录，通过scp或者rsync传输文件</p></li>
+<li><p>Windows用户可以通过Xshell+Xftp或WinSCP进行登录和传输数据</p></li>
+<li><p>Mac用户可以通过Cyberduck传输数据(需在创建书签时设置”传输文件”类型为”使用浏览器连接”)</p></li>
+<li><p>需要用到图形界面的Windows用户可以使用MobaXterm等客户端</p></li>
+<li><p>Xshell需要在登录的时候，选择验证方式为Password。平台支持密钥登陆的方式</p></li>
+<li><p>您也可以访问<code class="docutils literal notranslate"><span class="pre">https://10.20.252.1</span></code>和<code class="docutils literal notranslate"><span class="pre">https://10.20.252.2</span></code>（请忽略浏览器证书错误或不安全报错），进入交互式网站进行提交任务、上传下载文件等操作</p></li>
+</ul>
+<p><strong>请注意：所有计算节点不可联网，登陆节点仅用于提交任务、安装配置环境和软件</strong></p>
+<section id="linux-mac">
+<h2>Linux\Mac登录和传输数据<a class="headerlink" href="#linux-mac" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>Linux\Mac用户通过自带的命令行终端，以ssh的方式登录</p></li>
+<li><p>打开终端后通过以下命令连接，连接前请确保在校园网内</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># user_name为账号，ip_address为所要连接的IP</span>
+<span class="n">ssh</span> <span class="n">user_name</span><span class="nd">@ip_address</span>
+</pre></div>
+</div>
+<p>通过scp或者rsync传输数据</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scp</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">]</span> <span class="n">file</span> <span class="n">username</span><span class="nd">@ip_address</span><span class="p">:</span><span class="o">~/</span>
+<span class="c1"># 该命令将会把本地的名为file的文件上传到集群的home目录下,如果file是一个目录的话还需要加上参数r</span>
+<span class="n">scp</span> <span class="p">[</span><span class="o">-</span><span class="n">r</span><span class="p">]</span> <span class="n">username</span><span class="nd">@ip_address</span><span class="p">:</span><span class="o">~/</span><span class="n">file</span> <span class="o">./</span>
+<span class="c1"># 该命令将会把服务器上home目录下名为file的文件下载到本地当前文件夹下</span>
+<span class="n">rsync</span> <span class="p">[</span><span class="o">-</span><span class="n">Pr</span><span class="p">]</span> <span class="n">file</span> <span class="n">username</span><span class="nd">@ip_address</span><span class="p">:</span><span class="o">~/</span>
+<span class="c1"># 该命令将会把本地的名为file的文件同步到集群的home目录下,如果file是一个目录的话还需要加上参数r</span>
+<span class="n">rsync</span> <span class="p">[</span><span class="o">-</span><span class="n">Pr</span><span class="p">]</span> <span class="n">username</span><span class="nd">@ip_address</span><span class="p">:</span><span class="o">~/</span><span class="n">file</span> <span class="o">./</span>
+<span class="c1"># 该命令将会把服务器上home目录下名为file的文件同步到本地当前文件夹下</span>
+</pre></div>
+</div>
+</section>
+<section id="windows">
+<h2>Windows用户使用客户端<a class="headerlink" href="#windows" title="Permalink to this heading"></a></h2>
+<p>Windows用户可以使用客户端登录集群、上传数据，常见的客户端有Xshell+Xftp和WinSCP，下载Xshell+Xftp时选择免费许可版，安装后通过以下方式登录集群</p>
+<ul class="simple">
+<li><p>首先，打开Xshell客户端后，点击左上角 “文件” &gt;&gt; “新建”，输入连接的名称和集群的IP地址</p></li>
+<li><p>然后，点击连接按钮，输入用户名和密码，此处验证方式选择Password</p></li>
+<li><p>下次登录集群时，点击”文件”&gt;&gt;”打开”，找打对应的连接名称，选择连接即可</p></li>
+<li><p>最后，登录后，在安装Xftp的前提下，打开文件传输按键（工具栏绿色Xftp图标），即可进行文件传输</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="start.html" class="btn btn-neutral float-left" title="快速入门" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="submit_job.html" class="btn btn-neutral float-right" title="提交作业" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, LVCS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

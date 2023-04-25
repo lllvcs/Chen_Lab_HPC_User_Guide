@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>快速入门 &mdash; Chen Lab HPC User Guide  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="连接集群" href="connect_node.html" />
+    <link rel="prev" title="现有节点" href="node.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Chen Lab HPC User Guide
+          </a>
+              <div class="version">
+                v1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="node.html">现有节点</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="connect_node.html">连接集群</a></li>
+<li class="toctree-l1"><a class="reference internal" href="submit_job.html">提交作业</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software/index.html">软件</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mirror/index.html">镜像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="about.html">关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Chen Lab HPC User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">快速入门</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/start.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>快速入门<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<p>在开通邮件中获取账号后，Linux\Mac用户可通过命令行登录集群，Windows用户则可以通过ssh客户端登录集群；登录集群后，编写作业脚本，并通过sbatch指令将作业提交到计算节点上执行；此外，集群上安装了常见的计算软件，通过module指令导入计算环境。</p>
+<ul class="simple">
+<li><p><strong>先登录集群，登录前确保网络环境为校园网</strong>；</p></li>
+<li><p>Linux\Mac用户直接使用系统自带的终端通过ssh命令登录：<code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">user_name&#64;ip_address</span></code></p></li>
+<li><p>Windows用户可使用Xshell客户端进行登陆。为了方便文件传输，可同时下载并安装Xftp，安装完后点击软件左上角新建连接，输入IP和用户名密码即可登录；</p></li>
+<li><p>更多关于登录集群的内容，可参考 <strong><a class="reference external" href="./connect_node.html">连接集群</a></strong> 部分内容。</p></li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><strong>登录后，编写作业脚本，并通过sbatch命令将作业提交到计算节点上执行</strong>。</p></li>
+<li><p>假设我们的计算过程为：在计算节点上运行hostname指令，那么就可以这么编写作业脚本；</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH -o job.%j.out</span>
+<span class="c1">#SBATCH --partition=compute</span>
+<span class="c1">#SBATCH -J myFirstJob</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks-per-node=1</span>
+
+<span class="n">hostname</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>假设上面作业脚本的文件名为job.sh，通过以下命令提交：<code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">job.sh</span></code></p></li>
+</ul>
+<hr class="docutils" />
+<ul class="simple">
+<li><p><strong>集群安装了常见的计算软件，可以通过module指令导入计算环境</strong>；</p></li>
+<li><p><strong><a class="reference external" href="http://127.0.0.1:8000/software/module/module.html#id3">推荐使用module加载conda进行环境和软件包管理</a>，避免重复安装conda软件</strong></p></li>
+<li><p>可以通过module加载平台上装有的软件环境，也可以自行安装配置需要的计算环境，下面的作业脚本加载了<code class="docutils literal notranslate"><span class="pre">plink/1.90</span></code>的软件环境，具体可用的软件环境可使用命令<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code>指令进行查看。</p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH -o job.%j.out</span>
+<span class="c1">#SBATCH --partition=compute</span>
+<span class="c1">#SBATCH -J myFirstPlinkJob</span>
+<span class="c1">#SBATCH --nodes=1</span>
+<span class="c1">#SBATCH --ntasks-per-node=2</span>
+
+<span class="n">module</span> <span class="n">plink</span><span class="o">/</span><span class="mf">1.90</span>
+<span class="n">plink</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="node.html" class="btn btn-neutral float-left" title="现有节点" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="connect_node.html" class="btn btn-neutral float-right" title="连接集群" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, LVCS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

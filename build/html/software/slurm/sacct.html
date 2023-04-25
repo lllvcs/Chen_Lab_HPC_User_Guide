@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sacct &mdash; Chen Lab HPC User Guide  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="scancel" href="scancel.html" />
+    <link rel="prev" title="squeue" href="squeue.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Chen Lab HPC User Guide
+          </a>
+              <div class="version">
+                v1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../node.html">现有节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../connect_node.html">连接集群</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../submit_job.html">提交作业</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">软件</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="slurm.html">Slurm使用帮助</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="sbatch.html">sbatch</a></li>
+<li class="toctree-l3"><a class="reference internal" href="salloc.html">salloc</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sinfo.html">sinfo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="squeue.html">squeue</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">sacct</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scancel.html">scancel</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../module/module.html">Module使用帮助</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../anaconda/anaconda.html">Conda使用帮助</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../singularity/singularity.html">Singularity使用帮助</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../mirror/index.html">镜像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chen Lab HPC User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">软件</a></li>
+          <li class="breadcrumb-item"><a href="slurm.html">Slurm使用帮助</a></li>
+      <li class="breadcrumb-item active">sacct</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/software/slurm/sacct.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sacct">
+<h1>sacct<a class="headerlink" href="#sacct" title="Permalink to this heading"></a></h1>
+<p>通过<code class="docutils literal notranslate"><span class="pre">sacct</span></code>和<code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">show</span> <span class="pre">job</span></code>显示作业信息</p>
+<p>先介绍通过<code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">show</span> <span class="pre">job</span></code>显示作业信息；随后介绍通过<code class="docutils literal notranslate"><span class="pre">sacct</span></code>显示作业信息；最后介绍通过<code class="docutils literal notranslate"><span class="pre">saact</span></code>按指定格式输出作业信息。</p>
+<p><strong>首先介绍通过<code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">show</span> <span class="pre">job</span></code>显示作业信息</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">show</span> <span class="pre">job</span></code> 只能显示正在运行或者刚结束没多久的作业信息；</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 查看作业7454119的详细信息</span>
+<span class="n">scontrol</span> <span class="n">show</span> <span class="n">job</span> <span class="mi">7454119</span>
+</pre></div>
+</div>
+<p><strong>随后介绍通过<code class="docutils literal notranslate"><span class="pre">sacct</span></code>显示作业信息</strong></p>
+<p>通过<code class="docutils literal notranslate"><span class="pre">sacct</span></code>查询已经结束作业的相关信息：<code class="docutils literal notranslate"><span class="pre">sacct</span> <span class="pre">-j</span> <span class="pre">7454119</span></code></p>
+<p>输出内容会包括，作业号，作业名，分区，计费账户，申请的CPU数量，状态，结束代码</p>
+<p><code class="docutils literal notranslate"><span class="pre">JobID</span>&#160;&#160; <span class="pre">JobName</span>&#160;&#160; <span class="pre">Partition</span>&#160;&#160; <span class="pre">Account</span>&#160;&#160; <span class="pre">AllocCPUS</span>&#160;&#160; <span class="pre">State</span> <span class="pre">ExitCode</span></code></p>
+<p><strong>最后介绍如何通过sacct按照指定格式输出作业信息</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-o</span> <span class="pre">&quot;%.18i</span> <span class="pre">%.9P</span> <span class="pre">%.12j</span> <span class="pre">%.12u</span> <span class="pre">%.12T</span> <span class="pre">%.12M</span> <span class="pre">%.16l</span> <span class="pre">%.6D</span> <span class="pre">%R&quot;</span> <span class="pre">-u</span> <span class="pre">$USER</span></code></p>
+<p>如下所示，指定输出内容为：作业号，作业名，分区，运行节点，申请核数，状态，作业结束时间</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>format=jobid,jobname,partition,nodelist,alloccpus,state,end
+sacct --format=$format -j 7454119
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="squeue.html" class="btn btn-neutral float-left" title="squeue" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scancel.html" class="btn btn-neutral float-right" title="scancel" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, LVCS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
