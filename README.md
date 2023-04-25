@@ -1,6 +1,8 @@
 # Chen Lab HPC User Guide
 # Chen Lab 高性能计算集群用户手册
 
+[![Documentation Status](https://readthedocs.org/projects/chen-lab-hpc-user-guide/badge/?version=latest)](https://hpc.lvcs.top/en/latest/?badge=latest)
+
 ## 目录
 
 + 现有节点
