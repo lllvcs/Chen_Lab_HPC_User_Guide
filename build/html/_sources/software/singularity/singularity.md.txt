@@ -1,4 +1,5 @@
 # Singularity使用帮助
+
 容器技术是一种以应用软件为中心的虚拟化技术。以应用软件为单元，将软件及所有的依赖打包成容器镜像，打包后的容器镜像可直接拷贝到不同的Linux主机上运行。通过容器技术，可以很好的解决安装软件时，依赖库的安装问题、软件环境的隔离以及软件环境的移植问题。
 
 Singularity为劳伦斯伯克利国家实验室开发专门用于高性能计算场景的容器技术，Singularity完全基于可移植性进行虚拟化，更加轻量级，部署更快，Singularity目前被广泛地各高性能计算中心。
@@ -11,7 +12,9 @@ Singularity为劳伦斯伯克利国家实验室开发专门用于高性能计算
 
 同时介绍如何在已配置好fakeroot节点上，通过Singularity构建软件镜像。
 
-+ 首先介绍在拥有**root**权限的**个人主机**上安装Singularity
+----
+
+## 在拥有**root**权限的**个人主机**上安装Singularity
 ```
 # 安装依赖
 yum install -y gcc libuuid-devel squashfs-tools openssl-devel make
@@ -35,7 +38,9 @@ make && make install
 echo "export PATH=/opt/singularity/${VERSION}/bin:\$PATH" >> /etc/profile
 ```
 
-+ 接着介绍如何使用Singularity部署软件镜像，以软件molspin为例
+----
+
+## 使用Singularity部署软件镜像，以软件molspin为例
 ```
 # 拉取docker镜像创建sandbox格式容器
 singularity build --sandbox molspin docker://centos:7.6.1810
@@ -65,6 +70,7 @@ singularity build molspin.sif molspin/
 # 运行镜像，其中example.msd为输入文件
 singularity exec molspin.sif  molspin -p 2 -a example.msd
 ```
+
 >SIF和sandbox两种格式的镜像是可以相互转换的，可以通过singularity build命令将sandbox格式的镜像转换为SIF格式的镜像，也可以通过singularity build命令将SIF格式的镜像转换为sandbox格式的镜像。
 >
 >```
@@ -74,7 +80,9 @@ singularity exec molspin.sif  molspin -p 2 -a example.msd
 ># 2. 将sandbox容器镜像转化成SIF格式;
 >singularity build centos76.sif centos76
 >```
+
 ----------------
+
 同时，集群上也可以构建Singularity软件镜像，用户可以在节点上使用fakeroot安装软件镜像，具体方式如下
 ```
 # 登录节点

@@ -34,7 +34,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.0
+                v1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -46,6 +46,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../apply.html">申请账户</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../node.html">现有节点</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../start.html">快速入门</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../connect_node.html">连接集群</a></li>
@@ -55,6 +56,9 @@
 <li class="toctree-l2"><a class="reference internal" href="module/module.html">Module使用帮助</a></li>
 <li class="toctree-l2"><a class="reference internal" href="anaconda/anaconda.html">Conda使用帮助</a></li>
 <li class="toctree-l2"><a class="reference internal" href="singularity/singularity.html">Singularity使用帮助</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytorch/pytorch.html">Pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="screen/screen.html">Screen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tmux/tmux.html">Tmux</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../mirror/index.html">镜像</a></li>
@@ -91,12 +95,45 @@
 <p class="caption" role="heading"><span class="caption-text">软件目录</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="slurm/slurm.html">Slurm使用帮助</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="slurm/sbatch.html">sbatch</a></li>
-<li class="toctree-l2"><a class="reference internal" href="slurm/salloc.html">salloc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="slurm/sinfo.html">sinfo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="slurm/squeue.html">squeue</a></li>
-<li class="toctree-l2"><a class="reference internal" href="slurm/sacct.html">sacct</a></li>
-<li class="toctree-l2"><a class="reference internal" href="slurm/scancel.html">scancel</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm/sbatch.html">sbatch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slurm/sbatch.html#id1"><strong>一个简单的例子</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/sbatch.html#id2"><strong>除此之外，还有一些常见的参数</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/sbatch.html#gpu"><strong>一个GPU作业的例子</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/sbatch.html#id3"><strong>一个跨节点多核心的例子</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="slurm/salloc.html">salloc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slurm/salloc.html#id1"><strong>一个简单的例子</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/salloc.html#gpu"><strong>一个GPU节点的例子</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/salloc.html#id2"><strong>一个跨节点使用案例</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="slurm/sinfo.html">sinfo</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slurm/sinfo.html#id1"><strong>通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>查看所有分区的空闲状态</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/sinfo.html#id2"><strong>通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>查看指定分区的空闲状态</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/sinfo.html#id3"><strong>sinfo的一些常用参数</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="slurm/squeue.html">squeue</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slurm/squeue.html#id1"><strong>显示队列中所有的作业<code class="docutils literal notranslate"><span class="pre">squeue</span></code></strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/squeue.html#id2"><strong>在队列中显示自己的作业</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/squeue.html#id3"><strong>按照自己的格式要求显示队列信息</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/squeue.html#id4"><strong><code class="docutils literal notranslate"><span class="pre">squeue</span></code>的常见参数</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="slurm/sacct.html">sacct</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slurm/sacct.html#scontrol-show-job"><strong>通过<code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">show</span> <span class="pre">job</span></code>显示作业信息</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/sacct.html#id1"><strong>通过<code class="docutils literal notranslate"><span class="pre">sacct</span></code>显示作业信息</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/sacct.html#id2"><strong>通过sacct按照指定格式输出作业信息</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="slurm/scancel.html">scancel</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slurm/scancel.html#id1"><strong>取消指定作业</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/scancel.html#id2"><strong>取消自己上机上号上所有作业</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/scancel.html#pending"><strong>取消自己上机账号上所有状态为PENDING的作业</strong></a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/scancel.html#id3"><strong>scancel常见参数</strong></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="module/module.html">Module使用帮助</a><ul>
@@ -118,7 +155,25 @@
 <li class="toctree-l2"><a class="reference internal" href="anaconda/anaconda.html#id4"><strong>错误处理</strong></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="singularity/singularity.html">Singularity使用帮助</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singularity/singularity.html">Singularity使用帮助</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="singularity/singularity.html#rootsingularity">在拥有<strong>root</strong>权限的<strong>个人主机</strong>上安装Singularity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="singularity/singularity.html#singularity-molspin">使用Singularity部署软件镜像，以软件molspin为例</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pytorch/pytorch.html">Pytorch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pytorch/pytorch.html#id1">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pytorch/pytorch.html#id2">使用与提交作业</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="screen/screen.html">Screen</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="screen/screen.html#id1">Screen基本使用</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tmux/tmux.html">Tmux</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tmux/tmux.html#id1">安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tmux/tmux.html#id2">使用</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>

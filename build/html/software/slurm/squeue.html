@@ -34,7 +34,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.0
+                v1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -46,6 +46,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../apply.html">申请账户</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../node.html">现有节点</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../start.html">快速入门</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../connect_node.html">连接集群</a></li>
@@ -55,7 +56,13 @@
 <li class="toctree-l3"><a class="reference internal" href="sbatch.html">sbatch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="salloc.html">salloc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sinfo.html">sinfo</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">squeue</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">squeue</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1"><strong>显示队列中所有的作业<code class="docutils literal notranslate"><span class="pre">squeue</span></code></strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2"><strong>在队列中显示自己的作业</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3"><strong>按照自己的格式要求显示队列信息</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4"><strong><code class="docutils literal notranslate"><span class="pre">squeue</span></code>的常见参数</strong></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="sacct.html">sacct</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scancel.html">scancel</a></li>
 </ul>
@@ -63,6 +70,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../module/module.html">Module使用帮助</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../anaconda/anaconda.html">Conda使用帮助</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../singularity/singularity.html">Singularity使用帮助</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/pytorch.html">Pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/screen.html">Screen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tmux/tmux.html">Tmux</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../mirror/index.html">镜像</a></li>
@@ -99,18 +109,29 @@
 <h1>squeue<a class="headerlink" href="#squeue" title="Permalink to this heading"></a></h1>
 <p>通过<code class="docutils literal notranslate"><span class="pre">squeue</span></code>查看提交作业的排队情况，包括作业的状态、运行时间、运行节点等信息</p>
 <p>这里介绍了几个使用案例，首先是显示队列中所有的作业；随后介绍如何显示队列中自己的作业；接着介绍如何按照自己的格式要求显示作业信息；最后介绍<code class="docutils literal notranslate"><span class="pre">squeue</span></code>的常见参数。</p>
-<p><strong>首先是显示队列中所有的作业<code class="docutils literal notranslate"><span class="pre">squeue</span></code></strong></p>
+<hr class="docutils" />
+<section id="id1">
+<h2><strong>显示队列中所有的作业<code class="docutils literal notranslate"><span class="pre">squeue</span></code></strong><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>默认情况下squeue输出的内容如下，分别是作业号，分区，作业名，用户，作业状态，运行时间，节点数量，运行节点(如果还在排队则显示排队原因)</p>
-<p><code class="docutils literal notranslate"> <span class="pre">JOBID</span>&#160;&#160; <span class="pre">PARTITION</span>&#160;&#160; <span class="pre">NAME</span>&#160;&#160; <span class="pre">USER</span>&#160;&#160; <span class="pre">ST</span>&#160;&#160; <span class="pre">TIME</span>&#160;&#160; <span class="pre">NODES</span>&#160;&#160; <span class="pre">NODELIST(REASON)</span></code></p>
-<p>指定显示compute和gpu分区的空闲状态：<code class="docutils literal notranslate"><span class="pre">sinfo</span> <span class="pre">-p</span> <span class="pre">compute</span> <span class="pre">gpu</span></code></p>
-<p><strong>随后介绍如何在队列中显示自己的作业</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">JOBID</span>   <span class="n">PARTITION</span>   <span class="n">NAME</span>   <span class="n">USER</span>   <span class="n">ST</span>   <span class="n">TIME</span>   <span class="n">NODES</span>   <span class="n">NODELIST</span><span class="p">(</span><span class="n">REASON</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h2><strong>在队列中显示自己的作业</strong><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># 注意whoami前后不是单引号
 squeue -u `whoami`
 </pre></div>
 </div>
-<p><strong>接着介绍如何按照自己的格式要求显示队列信息</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-o</span> <span class="pre">&quot;%.18i</span> <span class="pre">%.9P</span> <span class="pre">%.12j</span> <span class="pre">%.12u</span> <span class="pre">%.12T</span> <span class="pre">%.12M</span> <span class="pre">%.16l</span> <span class="pre">%.6D</span> <span class="pre">%R&quot;</span> <span class="pre">-u</span> <span class="pre">$USER</span></code></p>
-<p><strong>最后介绍<code class="docutils literal notranslate"><span class="pre">squeue</span></code>的常见参数</strong></p>
+</section>
+<section id="id3">
+<h2><strong>按照自己的格式要求显示队列信息</strong><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>squeue -o &quot;%.18i %.9P %.12j %.12u %.12T %.12M %.16l %.6D %R&quot; -u $USER
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2><strong><code class="docutils literal notranslate"><span class="pre">squeue</span></code>的常见参数</strong><a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">help</span>    <span class="c1"># 显示squeue命令的使用帮助信息；</span>
 <span class="o">-</span><span class="n">A</span> <span class="o">&lt;</span><span class="n">account_list</span><span class="o">&gt;</span>    <span class="c1"># 显示指定账户下所有用户的作业，如果是多个账户的话用逗号隔开；</span>
 <span class="o">-</span><span class="n">i</span> <span class="o">&lt;</span><span class="n">seconds</span><span class="o">&gt;</span>     <span class="c1"># 每隔相应的秒数，对输出的作业信息进行刷新</span>
@@ -138,6 +159,7 @@ squeue -u `whoami`
 # 例:squeue -o “%.18i %.9P %.12j %.12u %.12T %.12M %.16l %.6D %R”
 </pre></div>
 </div>
+</section>
 </section>
 
 

@@ -9,7 +9,7 @@
 project = 'Chen Lab HPC User Guide'
 copyright = '2023, LVCS'
 author = 'LVCS'
-version = 'v1.0'
+version = 'v1.1'
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration

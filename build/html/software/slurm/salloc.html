@@ -34,7 +34,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.0
+                v1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -46,6 +46,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../apply.html">申请账户</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../node.html">现有节点</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../start.html">快速入门</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../connect_node.html">连接集群</a></li>
@@ -53,7 +54,12 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">软件</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="slurm.html">Slurm使用帮助</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="sbatch.html">sbatch</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">salloc</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">salloc</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1"><strong>一个简单的例子</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gpu"><strong>一个GPU节点的例子</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2"><strong>一个跨节点使用案例</strong></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="sinfo.html">sinfo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="squeue.html">squeue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sacct.html">sacct</a></li>
@@ -63,6 +69,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../module/module.html">Module使用帮助</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../anaconda/anaconda.html">Conda使用帮助</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../singularity/singularity.html">Singularity使用帮助</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/pytorch.html">Pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/screen.html">Screen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tmux/tmux.html">Tmux</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../mirror/index.html">镜像</a></li>
@@ -98,9 +107,12 @@
   <section id="salloc">
 <h1>salloc<a class="headerlink" href="#salloc" title="Permalink to this heading"></a></h1>
 <p>申请计算节点，然后登录到申请到的计算节点上运行指令</p>
-<p>salloc的参数与sbatch相同，该部分先介绍一个简单的使用案例；随后介绍一个GPU的使用案例；最后介绍一个跨节点使用案例；</p>
-<p><strong>首先是一个简单的例子</strong>
-申请一个计算节点6个核心，运行时间为2小时，并跳转到该节点上运行程序</p>
+<p>salloc的参数与sbatch相同，该部分先介绍一个简单的使用案例；随后介绍一个GPU的使用案例；最后介绍一个跨节点使用案例</p>
+<hr class="docutils" />
+<section id="id1">
+<h2><strong>一个简单的例子</strong><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>申请一个计算节点6个核心，运行时间为2小时，并跳转到该节点上运行程序</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">salloc</span> <span class="o">-</span><span class="n">p</span> <span class="n">compute</span> <span class="o">-</span><span class="n">N1</span> <span class="o">-</span><span class="n">n6</span> <span class="o">-</span><span class="n">t</span> <span class="mi">2</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
 <span class="c1"># salloc 申请成功后会返回申请到的节点和作业ID等信息，假设申请到的是c02节点，作业ID为1078858</span>
 <span class="n">ssh</span> <span class="n">c02</span>      <span class="c1"># 直接登录到刚刚申请到的节点c02调式作业</span>
@@ -108,8 +120,13 @@
 <span class="n">squeue</span> <span class="o">-</span><span class="n">j</span> <span class="mi">1078858</span> <span class="c1"># 查看作业是否还在运行，确保作业已经退出，避免产生不必要的费用</span>
 </pre></div>
 </div>
-<p><strong>随后是一个GPU节点的使用案例</strong>
-申请一个gpu节点，16个核心，1块GPU卡，运行时间为2天，并跳转到节点上运行程序</p>
+</li>
+</ul>
+</section>
+<section id="gpu">
+<h2><strong>一个GPU节点的例子</strong><a class="headerlink" href="#gpu" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>申请一个gpu节点，16个核心，1块GPU卡，运行时间为2天，并跳转到节点上运行程序</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">salloc</span> <span class="o">-</span><span class="n">p</span> <span class="n">gpu</span> <span class="o">-</span><span class="n">N1</span> <span class="o">-</span><span class="n">n16</span> <span class="o">--</span><span class="n">gres</span><span class="o">=</span><span class="n">gpu</span><span class="p">:</span><span class="mi">1</span> <span class="o">-</span><span class="n">t</span> <span class="mi">2</span><span class="o">-</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>
 <span class="c1"># 假设申请成功后返回的作业号为1078859，申请到的节点是g05</span>
 <span class="n">ssh</span> <span class="n">g05</span> <span class="c1"># 登录到gpu05上调式作业</span>
@@ -117,8 +134,14 @@
 <span class="n">squeue</span> <span class="o">-</span><span class="n">j</span> <span class="mi">1078859</span> <span class="c1"># 查看作业是否还在运行，确保作业已经退出，避免产生不必要的费用</span>
 </pre></div>
 </div>
-<p><strong>最后介绍一个跨节点使用案例</strong>
-申请两个大内存节点，每个节点12个核心，运行时间为6小时20分钟，</p>
+</li>
+<li><p><strong>注意：</strong> 由于GPU节点上的GPU卡是共享的，所以在申请GPU节点时，需要指定GPU卡的数量，否则会报错</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2><strong>一个跨节点使用案例</strong><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>申请两个大内存节点，每个节点12个核心，运行时间为6小时20分钟</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">salloc</span> <span class="o">-</span><span class="n">p</span> <span class="n">big</span> <span class="o">-</span><span class="n">N2</span> <span class="o">--</span><span class="n">ntasks</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">12</span> <span class="o">-</span><span class="n">t</span> <span class="mi">6</span><span class="p">:</span><span class="mi">20</span><span class="p">:</span><span class="mi">00</span>
 <span class="c1"># salloc 申请成功后会返回申请到的节点和作业ID等信息，假设申请到的是b[05-06]节点，作业ID为1078857</span>
 <span class="c1"># 这里申请两个节点，每个节点12个进程，每个进程一个核心</span>
@@ -136,6 +159,10 @@
 <span class="n">squeue</span> <span class="o">-</span><span class="n">j</span> <span class="mi">1078857</span> <span class="c1"># 查看作业是否还在运行，确保作业已经退出，避免产生不必要的费用</span>
 </pre></div>
 </div>
+</li>
+<li><p><strong>注意：</strong> 由于MPI的运行机制，需要在申请节点时指定每个节点的进程数，否则会报错</p></li>
+</ul>
+</section>
 </section>
 
 

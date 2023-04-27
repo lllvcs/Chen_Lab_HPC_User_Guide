@@ -11,6 +11,7 @@ Chen Lab 高性能计算集群用户手册
    :maxdepth: 2
    :caption: 目录
 
+   apply
    node
    start
    connect_node

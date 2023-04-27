@@ -3,6 +3,7 @@
 Environment Modules 包是一个简化 shell 初始化的工具，它允许用户在使用 modulefiles 进行会话期间轻松修改其环境。每个模块文件都包含为应用程序配置 shell 所需的信息。模块文件可以由系统上的许多用户共享，并且用户可以拥有自己的集合来补充或替换共享模块文件。
 
 ----
+
 ## module常见的一些指令
 ```
 module help       # 显示帮助信息
@@ -15,6 +16,7 @@ module switch [mod1] mod2 # 删除mod1并导入mod2
 ```
 
 ----
+
 ## 查看可用模块
 - `module avail` 或 `ml av`
 - 将返回如下提示
@@ -63,6 +65,7 @@ Use "module keyword key1 key2 ..." to search for all possible modules matching a
 + 在使用`sbatch`提交作业或使用`salloc`进入对应计算节点时，请务必在第一步加载所需要的模块
 
 ----
+
 ## 编写modulefile来管理自己的软件环境
 自己编译安装的软件也可以通过module来进行管理，步骤为：先创建目录用来存放自己的modulefile；然后在创建好的目录下编写modulefile
 + 首先，创建目录用来存放自己的modulefile

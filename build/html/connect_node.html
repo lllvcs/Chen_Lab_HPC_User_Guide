@@ -34,7 +34,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.0
+                v1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -46,9 +46,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="apply.html">申请账户</a></li>
 <li class="toctree-l1"><a class="reference internal" href="node.html">现有节点</a></li>
 <li class="toctree-l1"><a class="reference internal" href="start.html">快速入门</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">连接集群</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id2"><strong>请注意！</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">连接登录节点</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#linux-mac">Linux\Mac登录和传输数据</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#windows">Windows用户使用客户端</a></li>
 </ul>
@@ -85,16 +88,36 @@
              
   <section id="id1">
 <h1>连接集群<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="id2">
+<h2><strong>请注意！</strong><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p><strong>登录节点仅限用于以下用途：</strong></p>
 <ul class="simple">
-<li><p>登陆节点地址为：<code class="docutils literal notranslate"><span class="pre">10.20.252.1</span></code>和<code class="docutils literal notranslate"><span class="pre">10.20.252.2</span></code>，端口号为<code class="docutils literal notranslate"><span class="pre">22</span></code></p></li>
+<li><p>提交作业 安装配置环境和软件</p></li>
+<li><p>利用SCP和SFTP传输文件</p></li>
+<li><p>当作跳板机连接集群内的计算节点</p></li>
+<li><p>其他不适当的用途可能会被随时终止或封号！</p></li>
+</ul>
+<ul class="simple">
+<li><p><strong>默认存储配额为 1TB 请合理规划使用</strong></p></li>
+<li><p><strong>GPU节点请按照 GPU:CPU=1:16 的比例提交任务</strong></p></li>
+<li><p><strong>请养成及时备份的良好习惯！</strong></p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id3">
+<h2>连接登录节点<a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>登录节点地址为：<code class="docutils literal notranslate"><span class="pre">10.20.252.1</span></code>和<code class="docutils literal notranslate"><span class="pre">10.20.252.2</span></code>，端口号为<code class="docutils literal notranslate"><span class="pre">22</span></code></p></li>
 <li><p>Linux\Mac用户直接使用电脑自带的命令行终端通过ssh登录，通过scp或者rsync传输文件</p></li>
 <li><p>Windows用户可以通过Xshell+Xftp或WinSCP进行登录和传输数据</p></li>
 <li><p>Mac用户可以通过Cyberduck传输数据(需在创建书签时设置”传输文件”类型为”使用浏览器连接”)</p></li>
 <li><p>需要用到图形界面的Windows用户可以使用MobaXterm等客户端</p></li>
-<li><p>Xshell需要在登录的时候，选择验证方式为Password。平台支持密钥登陆的方式</p></li>
+<li><p>Xshell需要在登录的时候，选择验证方式为Password。平台支持密钥登录的方式</p></li>
 <li><p>您也可以访问<code class="docutils literal notranslate"><span class="pre">https://10.20.252.1</span></code>和<code class="docutils literal notranslate"><span class="pre">https://10.20.252.2</span></code>（请忽略浏览器证书错误或不安全报错），进入交互式网站进行提交任务、上传下载文件等操作</p></li>
 </ul>
-<p><strong>请注意：所有计算节点不可联网，登陆节点仅用于提交任务、安装配置环境和软件</strong></p>
+<p><strong>请注意：所有计算节点不可联网，登录节点仅用于提交任务、安装配置环境和软件</strong></p>
+</section>
+<hr class="docutils" />
 <section id="linux-mac">
 <h2>Linux\Mac登录和传输数据<a class="headerlink" href="#linux-mac" title="Permalink to this heading"></a></h2>
 <ul class="simple">

@@ -34,7 +34,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.0
+                v1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -46,6 +46,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../apply.html">申请账户</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../node.html">现有节点</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../start.html">快速入门</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../connect_node.html">连接集群</a></li>
@@ -57,12 +58,21 @@
 <li class="toctree-l3"><a class="reference internal" href="sinfo.html">sinfo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="squeue.html">squeue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sacct.html">sacct</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">scancel</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">scancel</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1"><strong>取消指定作业</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2"><strong>取消自己上机上号上所有作业</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pending"><strong>取消自己上机账号上所有状态为PENDING的作业</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3"><strong>scancel常见参数</strong></a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../module/module.html">Module使用帮助</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../anaconda/anaconda.html">Conda使用帮助</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../singularity/singularity.html">Singularity使用帮助</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/pytorch.html">Pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/screen.html">Screen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tmux/tmux.html">Tmux</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../mirror/index.html">镜像</a></li>
@@ -99,22 +109,30 @@
 <h1>scancel<a class="headerlink" href="#scancel" title="Permalink to this heading"></a></h1>
 <p>通过<code class="docutils literal notranslate"><span class="pre">scancel</span></code>取消队列中已提交的作业</p>
 <p>介绍几个使用使用案例，分别是，取消指定作业、取消自己上机账号上所有作业、取消自己上机账号上所有状态为PENDING的作业，最后介绍<code class="docutils literal notranslate"><span class="pre">scancel</span></code>常见的参数。</p>
-<p><strong>取消指定作业</strong></p>
+<hr class="docutils" />
+<section id="id1">
+<h2><strong>取消指定作业</strong><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 取消作业ID为123的作业</span>
 <span class="n">scancel</span> <span class="mi">123</span>
 </pre></div>
 </div>
-<p><strong>取消自己上机上号上所有作业</strong></p>
+</section>
+<section id="id2">
+<h2><strong>取消自己上机上号上所有作业</strong><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># 注意whoami前后不是单引号
 scancel -u `whoami`
 </pre></div>
 </div>
-<p><strong>取消自己上机账号上所有状态为PENDING的作业</strong></p>
+</section>
+<section id="pending">
+<h2><strong>取消自己上机账号上所有状态为PENDING的作业</strong><a class="headerlink" href="#pending" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># 注意whoami前后不是单引号
 scancel -t PENDING -u `whoami`
 </pre></div>
 </div>
-<p><strong>scancel常见参数</strong></p>
+</section>
+<section id="id3">
+<h2><strong>scancel常见参数</strong><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">help</span>                <span class="c1"># 显示scancel命令的使用帮助信息；</span>
 <span class="o">-</span><span class="n">A</span> <span class="o">&lt;</span><span class="n">account</span><span class="o">&gt;</span>        <span class="c1"># 取消指定账户的作业，如果没有指定job_id,将取消所有；</span>
 <span class="o">-</span><span class="n">n</span> <span class="o">&lt;</span><span class="n">job_name</span><span class="o">&gt;</span>        <span class="c1"># 取消指定作业名的作业；</span>
@@ -124,6 +142,7 @@ scancel -t PENDING -u `whoami`
 <span class="o">-</span><span class="n">u</span> <span class="o">&lt;</span><span class="n">user_name</span><span class="o">&gt;</span>        <span class="c1"># 取消指定用户下的作业；</span>
 </pre></div>
 </div>
+</section>
 </section>
 
 

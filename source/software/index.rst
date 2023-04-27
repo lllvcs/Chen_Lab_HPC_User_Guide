@@ -14,4 +14,7 @@
    module/module
    anaconda/anaconda
    singularity/singularity
+   pytorch/pytorch
+   screen/screen
+   tmux/tmux
 

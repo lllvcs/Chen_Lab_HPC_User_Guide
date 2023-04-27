@@ -34,7 +34,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.0
+                v1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -46,6 +46,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../apply.html">申请账户</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../node.html">现有节点</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../start.html">快速入门</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../connect_node.html">连接集群</a></li>
@@ -91,14 +92,14 @@
   <section id="anaconda">
 <h1>Anaconda镜像使用帮助<a class="headerlink" href="#anaconda" title="Permalink to this heading"></a></h1>
 <p>Anaconda 是一个用于科学计算的 Python 发行版，支持 Linux, Mac, Windows, 包含了众多流行的科学计算、数据分析的 Python 包。</p>
+<hr class="docutils" />
 <p><strong>Anaconda 安装包可以到 <a class="reference external" href="http://10.20.252.4/anaconda/archive/"><strong>Chen Lab HPC镜像站内</strong></a> 下载</strong></p>
 <p><strong>在HPC中，Anaconda 安装包可以到<code class="docutils literal notranslate"><span class="pre">/share/home/share/mirrors/anaconda/archive/</span></code>目录内获取</strong></p>
 <p>Chen Lab HPC 还提供了 Anaconda 仓库与第三方源（<code class="docutils literal notranslate"><span class="pre">conda-forge</span></code>、<code class="docutils literal notranslate"><span class="pre">msys2</span></code>、<code class="docutils literal notranslate"><span class="pre">pytorch</span></code>等，查看<a class="reference external" href="http://10.20.252.4/anaconda/cloud/">完整列表</a>，更多第三方源可以前往校园网联合镜像站查看）的镜像，各系统都可以通过修改用户目录下的<code class="docutils literal notranslate"><span class="pre">.condarc</span></code>文件来使用<strong>Chen Lab HPC 镜像源</strong>。</p>
 <p>Windows 用户无法直接创建名为<code class="docutils literal notranslate"><span class="pre">.condarc</span></code>的文件，可先执行<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">config</span> <span class="pre">--set</span> <span class="pre">show_channel_urls</span> <span class="pre">yes</span></code>生成该文件之后再修改。</p>
 <p>注：由于部分第三方源更新过快难以同步，我们不同步<code class="docutils literal notranslate"><span class="pre">pytorch-nightly</span></code>, <code class="docutils literal notranslate"><span class="pre">pytorch-nightly-cpu</span></code>, <code class="docutils literal notranslate"><span class="pre">ignite-nightly</span></code>这三个包。</p>
-<ul class="simple">
-<li><p><strong>校园网：</strong></p></li>
-</ul>
+<ul>
+<li><p><strong>校园网：</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">channels</span><span class="p">:</span>
   <span class="o">-</span> <span class="n">defaults</span>
 <span class="n">show_channel_urls</span><span class="p">:</span> <span class="n">true</span>
@@ -117,9 +118,8 @@
   <span class="n">nvidia</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">10.20.252.4</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">cloud</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p><strong>HPC：</strong></p></li>
-</ul>
+</li>
+<li><p><strong>HPC：</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">channels</span><span class="p">:</span>
   <span class="o">-</span> <span class="n">defaults</span>
 <span class="n">show_channel_urls</span><span class="p">:</span> <span class="n">true</span>
@@ -138,9 +138,12 @@
   <span class="n">nvidia</span><span class="p">:</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">mirrors</span><span class="o">/</span><span class="n">anaconda</span><span class="o">/</span><span class="n">cloud</span>
 </pre></div>
 </div>
+</li>
+</ul>
 <p>即可添加 Anaconda Python 免费仓库。</p>
 <p>运行<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">clean</span> <span class="pre">-i</span></code>清除索引缓存，保证用的是镜像站提供的索引。</p>
 <p>运行<code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">create</span> <span class="pre">-n</span> <span class="pre">myenv</span> <span class="pre">numpy</span></code>测试一下吧。</p>
+<hr class="docutils" />
 <section id="miniconda">
 <h2>Miniconda 镜像使用帮助<a class="headerlink" href="#miniconda" title="Permalink to this heading"></a></h2>
 <p>Miniconda 是一个 Anaconda 的轻量级替代，默认只包含了 python 和 conda，但是可以通过 pip 和 conda 来安装所需要的包。</p>

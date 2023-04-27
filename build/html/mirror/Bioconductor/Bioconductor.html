@@ -34,7 +34,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.0
+                v1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -46,6 +46,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../apply.html">申请账户</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../node.html">现有节点</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../start.html">快速入门</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../connect_node.html">连接集群</a></li>
@@ -88,16 +89,21 @@
   <section id="bioconductor">
 <h1>Bioconductor镜像使用帮助<a class="headerlink" href="#bioconductor" title="Permalink to this heading"></a></h1>
 <p>Bioconductor 为高通量基因组数据的分析和可视化提供开源工具。Bioconductor 多数软件包采用 R 统计编程语言开发。Bioconductor 每年释出两个版本，并有活跃的用户社区。</p>
+<hr class="docutils" />
 <p>使用方法：Bioconductor 镜像源配置文件之一是<code class="docutils literal notranslate"><span class="pre">.Rprofile</span></code>（linux 下位于 <code class="docutils literal notranslate"><span class="pre">~/.Rprofile</span></code>, Windows 下位于<code class="docutils literal notranslate"><span class="pre">~\library\base\R\Rprofile</span></code>）。</p>
 <p>在文末添加如下语句或在R/RStudio终端下键入：</p>
-<ul class="simple">
-<li><p><strong>校园网：</strong></p></li>
+<ul>
+<li><p><strong>校园网：</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">options</span><span class="p">(</span><span class="n">BioC_mirror</span><span class="o">=</span><span class="s2">&quot;http://10.20.252.4/bioconductor&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>HPC集群：</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">options</span><span class="p">(</span><span class="n">BioC_mirror</span><span class="o">=</span><span class="s2">&quot;http://mirrors/bioconductor&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
 </ul>
-<p><strong><code class="docutils literal notranslate"><span class="pre">options(BioC_mirror=&quot;http://10.20.252.4/bioconductor&quot;)</span></code></strong></p>
-<ul class="simple">
-<li><p><strong>HPC集群：</strong></p></li>
-</ul>
-<p><strong><code class="docutils literal notranslate"><span class="pre">options(BioC_mirror=&quot;http://mirrors/bioconductor&quot;)</span></code></strong></p>
 <p>打开R即可使用该 Bioconductor 镜像源安装 Bioconductor 软件包。</p>
 </section>
 

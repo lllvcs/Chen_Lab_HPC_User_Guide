@@ -34,7 +34,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.0
+                v1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -46,13 +46,20 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../apply.html">申请账户</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../node.html">现有节点</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../start.html">快速入门</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../connect_node.html">连接集群</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../submit_job.html">提交作业</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">软件</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="slurm.html">Slurm使用帮助</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">sbatch</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">sbatch</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1"><strong>一个简单的例子</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2"><strong>除此之外，还有一些常见的参数</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gpu"><strong>一个GPU作业的例子</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3"><strong>一个跨节点多核心的例子</strong></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="salloc.html">salloc</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sinfo.html">sinfo</a></li>
 <li class="toctree-l3"><a class="reference internal" href="squeue.html">squeue</a></li>
@@ -63,6 +70,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../module/module.html">Module使用帮助</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../anaconda/anaconda.html">Conda使用帮助</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../singularity/singularity.html">Singularity使用帮助</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/pytorch.html">Pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/screen.html">Screen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tmux/tmux.html">Tmux</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../mirror/index.html">镜像</a></li>
@@ -99,10 +109,11 @@
 <h1>sbatch<a class="headerlink" href="#sbatch" title="Permalink to this heading"></a></h1>
 <p>将整个计算过程，写到脚本中，通过<code class="docutils literal notranslate"><span class="pre">sbatch</span></code>指令提交到计算节点上执行</p>
 <p>先介绍一个简单的例子，随后介绍例子中涉及的参数，接着介绍<code class="docutils literal notranslate"><span class="pre">sbatch</span></code>其他一些常见参数，最后再介绍GPU和MPI跨节点作业案例。</p>
-<p><strong>首先是一个简单的例子</strong></p>
-<ul class="simple">
-<li><p>假设我们的计算过程为：在计算节点上运行<code class="docutils literal notranslate"><span class="pre">hostname</span></code>指令，那么就可以这么编写作业脚本；</p></li>
-</ul>
+<hr class="docutils" />
+<section id="id1">
+<h2><strong>一个简单的例子</strong><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>假设我们的计算过程为：在计算节点上运行<code class="docutils literal notranslate"><span class="pre">hostname</span></code>指令，那么就可以这么编写作业脚本；</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#SBATCH -o job.%j.out</span>
 <span class="c1">#SBATCH -p compute</span>
@@ -113,10 +124,13 @@
 <span class="n">hostname</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>假设上面作业脚本的文件名为job.sh，通过以下命令提交 <code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">job.sh</span></code></p></li>
-<li><p><strong>随后我们介绍脚本中涉及的参数</strong></p></li>
-</ul>
+</li>
+<li><p>假设上面作业脚本的文件名为job.sh，通过以下命令提交</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sbatch</span> <span class="n">job</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</li>
+<li><p><strong>脚本中涉及的参数</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">o</span> <span class="n">job</span><span class="o">.%</span><span class="n">j</span><span class="o">.</span><span class="n">out</span>       <span class="c1"># 脚本执行的输出将被保存在当job.%j.out文件下，%j表示作业号;</span>
 <span class="o">-</span><span class="n">p</span> <span class="n">compute</span>       <span class="c1"># 作业提交的指定分区为compute；</span>
 <span class="o">-</span><span class="n">J</span> <span class="n">myFirstJob</span>       <span class="c1"># 作业在调度系统中的作业名为myFirstJob;</span>
@@ -125,10 +139,12 @@
 </pre></div>
 </div>
 <p>其中：</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code> 指定作业的运行分区，提交作业时必须指定分区，每个分区有不同的属性，如普通计算节点<code class="docutils literal notranslate"><span class="pre">compute</span></code>分区，每个节点核心数为32，内存为384G，通过以下命令可以查看对应集群可用分区，也可以通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>查看分区的空闲状态；</p></li>
+<p><code class="docutils literal notranslate"><span class="pre">-p</span></code> 指定作业的运行分区，提交作业时必须指定分区，每个分区有不同的属性，如普通计算节点<code class="docutils literal notranslate"><span class="pre">compute</span></code>分区，每个节点核心数为32，内存为384G，通过以下命令可以查看对应集群可用分区，也可以通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>查看分区的空闲状态；</p>
+</li>
 </ul>
-<p>除此之外，还有一些常见的参数；</p>
+</section>
+<section id="id2">
+<h2><strong>除此之外，还有一些常见的参数</strong><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">help</span>    <span class="c1"># 显示帮助信息；</span>
 <span class="o">-</span><span class="n">A</span> <span class="o">&lt;</span><span class="n">account</span><span class="o">&gt;</span>    <span class="c1"># 指定计费账户；</span>
 <span class="o">-</span><span class="n">D</span><span class="p">,</span> <span class="o">--</span><span class="n">chdir</span><span class="o">=&lt;</span><span class="n">directory</span><span class="o">&gt;</span>      <span class="c1"># 指定工作目录；</span>
@@ -148,11 +164,12 @@
 <span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="o">--</span><span class="n">exclude</span><span class="o">=&lt;</span><span class="n">node</span> <span class="n">name</span> <span class="nb">list</span><span class="o">&gt;</span>   <span class="c1"># 排除指定的节点；</span>
 </pre></div>
 </div>
-<p><strong>接下来是一个GPU作业的例子</strong></p>
+</section>
+<section id="gpu">
+<h2><strong>一个GPU作业的例子</strong><a class="headerlink" href="#gpu" title="Permalink to this heading"></a></h2>
 <p><strong>请注意，GPU节点请按照 GPU:CPU = 1:16 的比例提交任务</strong></p>
-<ul class="simple">
-<li><p>假设我们想要申请一块GPU卡，并通过指令nvidia-smi来查看申请到GPU卡的信息，那么可以这么编写作业脚本</p></li>
-</ul>
+<ul>
+<li><p>假设我们想要申请一块GPU卡，并通过指令nvidia-smi来查看申请到GPU卡的信息，那么可以这么编写作业脚本</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#SBATCH -o job.%j.out</span>
 <span class="c1">#SBATCH --partition=gpu</span>
@@ -164,13 +181,19 @@
 <span class="n">nvidia</span><span class="o">-</span><span class="n">smi</span>
 </pre></div>
 </div>
-<p>脚本中的一些参数说明如下</p>
+</li>
+<li><p>脚本中的一些参数说明如下</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#SBATCH --partition=gpu      # 作业提交的指定分区为gpu;</span>
 <span class="c1">#SBATCH --gres=gpu:1         # 每个节点上申请一块GPU卡</span>
 </pre></div>
 </div>
-<p><strong>最后是一个跨节点多核心的例子</strong>
-假设我们想用两个节点，每个节点32个核心来运行vasp，那么可以这么编写作业脚本</p>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h2><strong>一个跨节点多核心的例子</strong><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>假设我们想用两个节点，每个节点32个核心来运行vasp，那么可以这么编写作业脚本</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#SBATCH -o job.%j.out</span>
 <span class="c1">#SBATCH --partition=compute</span>
@@ -191,6 +214,9 @@
 <span class="n">mpirun</span> <span class="o">-</span><span class="n">n</span> <span class="mi">64</span> <span class="o">-</span><span class="n">machinefile</span> <span class="n">slurm</span><span class="o">.</span><span class="n">hosts</span> <span class="n">vasp_std</span> <span class="o">&gt;</span> <span class="n">log</span>
 </pre></div>
 </div>
+</li>
+</ul>
+</section>
 </section>
 
 

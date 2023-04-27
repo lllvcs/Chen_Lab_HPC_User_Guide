@@ -34,7 +34,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.0
+                v1.1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -46,6 +46,7 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">目录</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../apply.html">申请账户</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../node.html">现有节点</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../start.html">快速入门</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../connect_node.html">连接集群</a></li>
@@ -54,7 +55,12 @@
 <li class="toctree-l2 current"><a class="reference internal" href="slurm.html">Slurm使用帮助</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="sbatch.html">sbatch</a></li>
 <li class="toctree-l3"><a class="reference internal" href="salloc.html">salloc</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">sinfo</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">sinfo</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1"><strong>通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>查看所有分区的空闲状态</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2"><strong>通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>查看指定分区的空闲状态</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3"><strong>sinfo的一些常用参数</strong></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="squeue.html">squeue</a></li>
 <li class="toctree-l3"><a class="reference internal" href="sacct.html">sacct</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scancel.html">scancel</a></li>
@@ -63,6 +69,9 @@
 <li class="toctree-l2"><a class="reference internal" href="../module/module.html">Module使用帮助</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../anaconda/anaconda.html">Conda使用帮助</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../singularity/singularity.html">Singularity使用帮助</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pytorch/pytorch.html">Pytorch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/screen.html">Screen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tmux/tmux.html">Tmux</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../mirror/index.html">镜像</a></li>
@@ -99,11 +108,20 @@
 <h1>sinfo<a class="headerlink" href="#sinfo" title="Permalink to this heading"></a></h1>
 <p>通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>可查询各分区节点的空闲状态；</p>
 <p>首先介绍通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>查看所有分区空闲状态；随后介绍通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>查看指定分区的空闲状态；最后介绍<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>的常用参数。</p>
-<p><strong>首先介绍通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>查看所有分区的空闲状态</strong></p>
+<hr class="docutils" />
+<section id="id1">
+<h2><strong>通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>查看所有分区的空闲状态</strong><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>显示集群的所有分区节点的空闲状态，<strong>idel</strong>为空闲，<strong>mix</strong>为节点部分核心可以使用，<strong>alloc</strong>为已被占用</p>
-<p><strong>随后介绍通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>查看指定分区的空闲状态</strong></p>
-<p>指定显示compute和gpu分区的空闲状态：<code class="docutils literal notranslate"><span class="pre">sinfo</span> <span class="pre">-p</span> <span class="pre">compute</span> <span class="pre">gpu</span></code></p>
-<p><strong>最后是sinfo的一些常用参数</strong></p>
+</section>
+<section id="id2">
+<h2><strong>通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>查看指定分区的空闲状态</strong><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>指定显示compute和gpu分区的空闲状态</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sinfo</span> <span class="o">-</span><span class="n">p</span> <span class="n">compute</span> <span class="n">gpu</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h2><strong>sinfo的一些常用参数</strong><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">help</span>    <span class="c1"># 显示sinfo命令的使用帮助信息；</span>
 <span class="o">-</span><span class="n">d</span>        <span class="c1"># 查看集群中没有响应的节点；</span>
 <span class="o">-</span><span class="n">i</span> <span class="o">&lt;</span><span class="n">seconds</span><span class="o">&gt;</span>    <span class="c1"># 每隔相应的秒数，对输出的分区节点信息进行刷新</span>
@@ -133,6 +151,7 @@
 例：sinfo -o &quot;%.15P %.5a %.10l %.6D %.6t %N&quot;
 </pre></div>
 </div>
+</section>
 </section>
 
 

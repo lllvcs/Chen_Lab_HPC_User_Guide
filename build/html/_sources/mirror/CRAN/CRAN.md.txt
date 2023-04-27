@@ -3,12 +3,18 @@ CRAN (The Comprehensive R Archive Network) 镜像源配置文件之一是`.Rprof
 
 在文件最下方添加如下语句:
 + **校园网：**
-**`options("repos" = c(CRAN="http://10.20.252.4/CRAN/"))`**
+   ```
+   options("repos" = c(CRAN="http://10.20.252.4/CRAN/"))
+   ```
 
 + **HPC集群：**
-**`options("repos" = c(CRAN="http://mirrors/CRAN/"))`**
+   ```
+   options("repos" = c(CRAN="http://mirrors/CRAN/"))
+   ```
 
 打开 R 即可使用该 CRAN 镜像源安装 R 软件包。
+
+----
 
 ## Ubuntu 下添加CRAN镜像安装r
 **参考如下链接中 README 里的步骤**

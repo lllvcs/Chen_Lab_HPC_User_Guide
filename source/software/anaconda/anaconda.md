@@ -1,9 +1,11 @@
 # Conda使用帮助
+
 Conda 是一个开源的软件包管理系统和环境管理系统，用于安装多个版本的软件包及其依赖关系，并在它们之间轻松切换，conda支持python、R、 ruby、 lua、 scala、 java、 javaScript、 C/ C++、 fortran等多种语言，还支持大部分生信软件的安装。
 
 首先介绍如何安装conda；接着介绍如何用conda创建虚拟环境和虚拟环境中安装软件；随后简单介绍一个例子，用conda创建python的虚拟环境；随后介绍用conda创建R语言运行环境；接着介绍用conda管理perl语言环境；最后介绍用conda安装生信软件。
 
 ----
+
 ## 安装conda
 ```
 # 获得最新的miniconda安装包；
@@ -32,6 +34,7 @@ conda --version
 ```
 
 ----
+
 ## 使用conda创建虚拟环境，并在虚拟环境中安装软件
 + 初始化conda
 
@@ -142,6 +145,7 @@ conda deactivate
 ```
 
 ----
+
 ## **错误处理**
 当遇到如下错误时
 

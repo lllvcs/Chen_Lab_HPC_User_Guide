@@ -1,26 +1,34 @@
 # squeue
+
 通过`squeue`查看提交作业的排队情况，包括作业的状态、运行时间、运行节点等信息
 
 这里介绍了几个使用案例，首先是显示队列中所有的作业；随后介绍如何显示队列中自己的作业；接着介绍如何按照自己的格式要求显示作业信息；最后介绍`squeue`的常见参数。
 
-**首先是显示队列中所有的作业`squeue`**
+----
+
+## **显示队列中所有的作业`squeue`**
 
 默认情况下squeue输出的内容如下，分别是作业号，分区，作业名，用户，作业状态，运行时间，节点数量，运行节点(如果还在排队则显示排队原因)
 
-` JOBID   PARTITION   NAME   USER   ST   TIME   NODES   NODELIST(REASON)`
+```
+JOBID   PARTITION   NAME   USER   ST   TIME   NODES   NODELIST(REASON)
+```
 
-指定显示compute和gpu分区的空闲状态：`sinfo -p compute gpu`
+## **在队列中显示自己的作业**
 
-**随后介绍如何在队列中显示自己的作业**
 ```
 # 注意whoami前后不是单引号
 squeue -u `whoami`
 ```
-**接着介绍如何按照自己的格式要求显示队列信息**
 
-`squeue -o "%.18i %.9P %.12j %.12u %.12T %.12M %.16l %.6D %R" -u $USER`
+## **按照自己的格式要求显示队列信息**
 
-**最后介绍`squeue`的常见参数**
+```
+squeue -o "%.18i %.9P %.12j %.12u %.12T %.12M %.16l %.6D %R" -u $USER
+```
+
+## **`squeue`的常见参数**
+
 ```
 --help    # 显示squeue命令的使用帮助信息；
 -A <account_list>    # 显示指定账户下所有用户的作业，如果是多个账户的话用逗号隔开；
@@ -31,7 +39,9 @@ squeue -u `whoami`
 -u <user_list>     # 显示指定用户的作业信息，如果是多个用户的话用逗号隔开；
 -w <hostlist>     # 显示指定节点上运行的作业，如果是多个节点的话用逗号隔开；
 ```
+
 按照指定输出格式输出
+
 ```
 -o <output_format>    显示指定的输出信息，指定的方式为%[[.]size]type，size表示输出项的显示长度，type为需要显示的信息。可以指定显示的常见信息如下；
 %a 账户信息

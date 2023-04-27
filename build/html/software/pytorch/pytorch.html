@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pytorch &mdash; Chen Lab HPC User Guide  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Screen" href="../screen/screen.html" />
+    <link rel="prev" title="Singularity使用帮助" href="../singularity/singularity.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Chen Lab HPC User Guide
+          </a>
+              <div class="version">
+                v1.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">目录</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../apply.html">申请账户</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../node.html">现有节点</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../start.html">快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../connect_node.html">连接集群</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../submit_job.html">提交作业</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">软件</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../slurm/slurm.html">Slurm使用帮助</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../module/module.html">Module使用帮助</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../anaconda/anaconda.html">Conda使用帮助</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../singularity/singularity.html">Singularity使用帮助</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Pytorch</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">使用与提交作业</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../screen/screen.html">Screen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tmux/tmux.html">Tmux</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../mirror/index.html">镜像</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">关于</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Chen Lab HPC User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">软件</a></li>
+      <li class="breadcrumb-item active">Pytorch</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/software/pytorch/pytorch.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="pytorch">
+<h1>Pytorch<a class="headerlink" href="#pytorch" title="Permalink to this heading"></a></h1>
+<p>PyTorch是一个开源的Python机器学习库，基于Torch，用于自然语言处理等应用程序。</p>
+<hr class="docutils" />
+<section id="id1">
+<h2>安装<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<ol>
+<li><p>导入conda环境；</p>
+<p>通过module导入需要的torch模块或通过module导入conda环境进行安装</p>
+<p><strong>建议使用module导入torch模块</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">pytorch</span><span class="p">(</span><span class="n">对应版本号</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>（若选择conda安装）创建虚拟环境并安装pytorch</p>
+<p>CUDA11.7版本</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">pytorch_cuda11</span><span class="mf">.7</span> <span class="n">pytorch</span> <span class="n">torchvision</span> <span class="n">torchaudio</span> <span class="n">pytorch</span><span class="o">-</span><span class="n">cuda</span><span class="o">=</span><span class="mf">11.7</span> <span class="o">-</span><span class="n">c</span> <span class="n">pytorch</span> <span class="o">-</span><span class="n">c</span> <span class="n">nvidia</span>
+</pre></div>
+</div>
+<p>CPU版本</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">pytorch_cpu</span> <span class="n">pytorch</span> <span class="n">torchvision</span> <span class="n">torchaudio</span> <span class="n">cpuonly</span> <span class="o">-</span><span class="n">c</span> <span class="n">pytorch</span>
+</pre></div>
+</div>
+</li>
+<li><p>（若选择conda安装）进入和退出创建好的虚拟环境</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">pytorch_</span><span class="p">(</span><span class="n">对应版本号</span><span class="p">)</span>
+<span class="n">conda</span> <span class="n">deactivate</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h2>使用与提交作业<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<ol>
+<li><p>创建工作目录并进入</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">pytorchJob1</span>
+<span class="n">cd</span> <span class="n">pytorchJob1</span>
+</pre></div>
+</div>
+</li>
+<li><p>将运行pytorch需要的相关文件上传到该文件夹下，这里创建一个简单的<code class="docutils literal notranslate"><span class="pre">test.py</span></code>程序，用于检测GPU是否可用</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">torch</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">())</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+</pre></div>
+</div>
+</li>
+<li><p>在该文件夹下编写作业脚本，命名为pytorchJob1.sh，脚本内容如下</p></li>
+</ol>
+<ul>
+<li><p>使用torch模块</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH -o job.%j.out</span>
+<span class="c1">#SBATCH --partition=GPU</span>
+<span class="c1">#SBATCH -J pytorch_job_1</span>
+<span class="c1">#SBATCH -N 1</span>
+<span class="c1">#SBATCH --ntasks-per-node=2</span>
+<span class="c1">#SBATCH --gres=gpu:1</span>
+<span class="c1">#SBATCH --qos=low</span>
+
+<span class="n">module</span> <span class="n">load</span> <span class="n">torch</span><span class="o">/</span><span class="n">cuda_11</span><span class="mf">.7</span>
+<span class="n">python</span> <span class="n">test</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</li>
+<li><p>使用conda环境</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH -o job.%j.out</span>
+<span class="c1">#SBATCH --partition=GPU</span>
+<span class="c1">#SBATCH -J pytorch_job_1</span>
+<span class="c1">#SBATCH -N 1</span>
+<span class="c1">#SBATCH --ntasks-per-node=2</span>
+<span class="c1">#SBATCH --gres=gpu:1</span>
+<span class="c1">#SBATCH --qos=low</span>
+
+<span class="n">source</span> <span class="n">activate</span> <span class="n">pytorch_cuda11</span><span class="mf">.7</span>
+<span class="n">python</span> <span class="n">test</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<ol>
+<li><p>提交作业</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sbatch</span> <span class="n">pytorchJob1</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../singularity/singularity.html" class="btn btn-neutral float-left" title="Singularity使用帮助" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../screen/screen.html" class="btn btn-neutral float-right" title="Screen" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, LVCS.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

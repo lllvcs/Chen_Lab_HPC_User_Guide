@@ -1,5 +1,8 @@
 # Anaconda镜像使用帮助
+
 Anaconda 是一个用于科学计算的 Python 发行版，支持 Linux, Mac, Windows, 包含了众多流行的科学计算、数据分析的 Python 包。
+
+----
 
 **Anaconda 安装包可以到 [**Chen Lab HPC镜像站内**](http://10.20.252.4/anaconda/archive/) 下载**
 
@@ -12,49 +15,52 @@ Windows 用户无法直接创建名为`.condarc`的文件，可先执行`conda c
 注：由于部分第三方源更新过快难以同步，我们不同步`pytorch-nightly`, `pytorch-nightly-cpu`, `ignite-nightly`这三个包。
 
 + **校园网：**
-```
-channels:
-  - defaults
-show_channel_urls: true
-default_channels:
-  - http://10.20.252.4/anaconda/pkgs/main
-  - http://10.20.252.4/anaconda/pkgs/r
-  - http://10.20.252.4/anaconda/pkgs/msys2
-custom_channels:
-  conda-forge: http://10.20.252.4/anaconda/cloud
-  msys2: http://10.20.252.4/anaconda/cloud
-  bioconda: http://10.20.252.4/anaconda/cloud
-  menpo: http://10.20.252.4/anaconda/cloud
-  pytorch: http://10.20.252.4/anaconda/cloud
-  pytorch-lts: http://10.20.252.4/anaconda/cloud
-  simpleitk: http://10.20.252.4/anaconda/cloud
-  nvidia: http://10.20.252.4/anaconda/cloud
-```
+   ```
+   channels:
+     - defaults
+   show_channel_urls: true
+   default_channels:
+     - http://10.20.252.4/anaconda/pkgs/main
+     - http://10.20.252.4/anaconda/pkgs/r
+     - http://10.20.252.4/anaconda/pkgs/msys2
+   custom_channels:
+     conda-forge: http://10.20.252.4/anaconda/cloud
+     msys2: http://10.20.252.4/anaconda/cloud
+     bioconda: http://10.20.252.4/anaconda/cloud
+     menpo: http://10.20.252.4/anaconda/cloud
+     pytorch: http://10.20.252.4/anaconda/cloud
+     pytorch-lts: http://10.20.252.4/anaconda/cloud
+     simpleitk: http://10.20.252.4/anaconda/cloud
+     nvidia: http://10.20.252.4/anaconda/cloud
+   ```
+
 + **HPC：**
-```
-channels:
-  - defaults
-show_channel_urls: true
-default_channels:
-  - http://mirrors/anaconda/pkgs/main
-  - http://mirrors/anaconda/pkgs/r
-  - http://mirrors/anaconda/pkgs/msys2
-custom_channels:
-  conda-forge: http://mirrors/anaconda/cloud
-  msys2: http://mirrors/anaconda/cloud
-  bioconda: http://mirrors/anaconda/cloud
-  menpo: http://mirrors/anaconda/cloud
-  pytorch: http://mirrors/anaconda/cloud
-  pytorch-lts: http://mirrors/anaconda/cloud
-  simpleitk: http://mirrors/anaconda/cloud
-  nvidia: http://mirrors/anaconda/cloud
-```
+   ```
+   channels:
+     - defaults
+   show_channel_urls: true
+   default_channels:
+     - http://mirrors/anaconda/pkgs/main
+     - http://mirrors/anaconda/pkgs/r
+     - http://mirrors/anaconda/pkgs/msys2
+   custom_channels:
+     conda-forge: http://mirrors/anaconda/cloud
+     msys2: http://mirrors/anaconda/cloud
+     bioconda: http://mirrors/anaconda/cloud
+     menpo: http://mirrors/anaconda/cloud
+     pytorch: http://mirrors/anaconda/cloud
+     pytorch-lts: http://mirrors/anaconda/cloud
+     simpleitk: http://mirrors/anaconda/cloud
+     nvidia: http://mirrors/anaconda/cloud
+   ```
+
 即可添加 Anaconda Python 免费仓库。
 
 运行`conda clean -i`清除索引缓存，保证用的是镜像站提供的索引。
 
 运行`conda create -n myenv numpy`测试一下吧。
 
+----
 
 ## Miniconda 镜像使用帮助
 Miniconda 是一个 Anaconda 的轻量级替代，默认只包含了 python 和 conda，但是可以通过 pip 和 conda 来安装所需要的包。
