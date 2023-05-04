@@ -6,6 +6,11 @@
 
 目前平台属于试运行阶段，如果用户对稳定性要求很高，请谨慎使用。
 
+<font size=5>
+
 **如在申请过程中遇到问题，可通过邮件联系我们：`hpc_life@ucas.ac.cn`**
+</font>
+<font size=5>
 
 **附件：[HPC申请表](./HPC_Application_Form.docx)**
+</font>
