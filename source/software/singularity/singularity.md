@@ -86,9 +86,7 @@ singularity exec molspin.sif  molspin -p 2 -a example.msd
 同时，集群上也可以构建Singularity软件镜像，用户可以在节点上使用fakeroot安装软件镜像，具体方式如下
 ```
 # 登录节点
-ssh <user_name>@10.20.252.1
-或
-ssh <user_name>@10.20.252.2
+ssh <user_name>@<login_node_IP>
 
 # 申请计算节点资源
 salloc -N 1 -n 1 -p <partition> -t 1:00:00

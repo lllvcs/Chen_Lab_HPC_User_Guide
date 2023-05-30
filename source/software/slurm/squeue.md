@@ -2,8 +2,6 @@
 
 通过`squeue`查看提交作业的排队情况，包括作业的状态、运行时间、运行节点等信息
 
-这里介绍了几个使用案例，首先是显示队列中所有的作业；随后介绍如何显示队列中自己的作业；接着介绍如何按照自己的格式要求显示作业信息；最后介绍`squeue`的常见参数。
-
 ----
 
 ## **显示队列中所有的作业`squeue`**
@@ -14,6 +12,8 @@
 JOBID   PARTITION   NAME   USER   ST   TIME   NODES   NODELIST(REASON)
 ```
 
+----
+
 ## **在队列中显示自己的作业**
 
 ```
@@ -21,11 +21,15 @@ JOBID   PARTITION   NAME   USER   ST   TIME   NODES   NODELIST(REASON)
 squeue -u `whoami`
 ```
 
+----
+
 ## **按照自己的格式要求显示队列信息**
 
 ```
 squeue -o "%.18i %.9P %.12j %.12u %.12T %.12M %.16l %.6D %R" -u $USER
 ```
+
+----
 
 ## **`squeue`的常见参数**
 

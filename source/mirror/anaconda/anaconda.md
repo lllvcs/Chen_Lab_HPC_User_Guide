@@ -54,11 +54,11 @@ Windows 用户无法直接创建名为`.condarc`的文件，可先执行`conda c
      nvidia: http://mirrors/anaconda/cloud
    ```
 
-即可添加 Anaconda Python 免费仓库。
+即可添加 Anaconda Python 软件仓库。
 
 运行`conda clean -i`清除索引缓存，保证用的是镜像站提供的索引。
 
-运行`conda create -n myenv numpy`测试一下吧。
+运行`conda create -n myenv numpy`，在新建的`myenv`环境中安装`numpy`软件包测试一下吧。
 
 ----
 

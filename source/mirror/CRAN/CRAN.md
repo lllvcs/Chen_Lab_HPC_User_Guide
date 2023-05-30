@@ -1,5 +1,12 @@
 # CRAN镜像使用帮助
-CRAN (The Comprehensive R Archive Network) 镜像源配置文件之一是`.Rprofile`（linux 下位于`~/.Rprofile`）。
+
+R是一个用于统计计算和图形的免费软件环境。它在各种各样的UNIX平台、Windows和MacOS上编译和运行。
+
+**R安装包可以到 [**Chen Lab HPC镜像站内**](http://10.20.252.4/CRAN/bin/) 下载**
+
+----
+
+CRAN (The Comprehensive R Archive Network) 镜像源配置文件之一是`.Rprofile`（Linux 下位于`~/.Rprofile`，Windows下位于`C:\Users\$USER_NAME\Documents\.Rprofile`）
 
 在文件最下方添加如下语句:
 + **校园网：**

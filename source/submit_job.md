@@ -6,11 +6,11 @@
 </font>
 
 运行作业的方式有两种：
-+ 一种是将计算过程写成脚本，通过sbatch指令提交到计算节点执行
-+ 另一种是通过salloc申请到计算节点，再ssh连接到计算节点进行计算
-+ 通过sinfo查看计算节点空闲状态
-+ 可以通过squeue查看已经提交作业的排队情况
-+ 通过scontrol show job 和sacct查询作业的相关信息
-+ 通过scancel取消已经提交的作业
++ 一种是将计算过程写成脚本，通过`sbatch`指令提交到计算节点执行
++ 另一种是通过`salloc`申请到计算节点，再ssh连接到计算节点进行计算
++ 通过`sinfo`查看计算节点空闲状态
++ 可以通过`squeue`查看已经提交作业的排队情况
++ 通过`scontrol show job`和`sacct`查询作业的相关信息
++ 通过`scancel`取消已经提交的作业
 
 **关于作业调度系统的具体操作，请访问 [软件-Slurm使用帮助](./software/slurm/slurm.html) 页面**

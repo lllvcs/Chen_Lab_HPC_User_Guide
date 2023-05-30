@@ -2,8 +2,6 @@
 
 通过`sacct`和`scontrol show job`显示作业信息
 
-先介绍通过`scontrol show job`显示作业信息；随后介绍通过`sacct`显示作业信息；最后介绍通过`saact`按指定格式输出作业信息。
-
 ----
 
 ## **通过`scontrol show job`显示作业信息**
@@ -14,6 +12,8 @@
 # 查看作业7454119的详细信息
 scontrol show job 7454119
 ```
+
+----
 
 ## **通过`sacct`显示作业信息**
 
@@ -28,6 +28,8 @@ sacct -j 7454119
 ```
 JobID   JobName   Partition   Account   AllocCPUS   State ExitCode
 ```
+
+----
 
 ## **通过sacct按照指定格式输出作业信息**
 
