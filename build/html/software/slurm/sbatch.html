@@ -12,8 +12,10 @@
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -34,7 +36,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.1
+                v1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -57,7 +59,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#id1"><strong>一个简单的例子</strong></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id2"><strong>除此之外，还有一些常见的参数</strong></a></li>
 <li class="toctree-l4"><a class="reference internal" href="#gpu"><strong>一个GPU作业的例子</strong></a></li>
-<li class="toctree-l4"><a class="reference internal" href="#id3"><strong>一个跨节点多核心的例子</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3"><strong>一个批量并行作业的例子</strong></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id4"><strong>一个跨节点多核心的例子</strong></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="salloc.html">salloc</a></li>
@@ -108,7 +111,6 @@
   <section id="sbatch">
 <h1>sbatch<a class="headerlink" href="#sbatch" title="Permalink to this heading"></a></h1>
 <p>将整个计算过程，写到脚本中，通过<code class="docutils literal notranslate"><span class="pre">sbatch</span></code>指令提交到计算节点上执行</p>
-<p>先介绍一个简单的例子，随后介绍例子中涉及的参数，接着介绍<code class="docutils literal notranslate"><span class="pre">sbatch</span></code>其他一些常见参数，最后再介绍GPU和MPI跨节点作业案例。</p>
 <hr class="docutils" />
 <section id="id1">
 <h2><strong>一个简单的例子</strong><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
@@ -120,6 +122,7 @@
 <span class="c1">#SBATCH -J myFirstJob</span>
 <span class="c1">#SBATCH --nodes=1 </span>
 <span class="c1">#SBATCH --ntasks-per-node=1</span>
+<span class="c1">#SBATCH --cpus-per-task=2</span>
 
 <span class="n">hostname</span>
 </pre></div>
@@ -135,7 +138,8 @@
 <span class="o">-</span><span class="n">p</span> <span class="n">compute</span>       <span class="c1"># 作业提交的指定分区为compute；</span>
 <span class="o">-</span><span class="n">J</span> <span class="n">myFirstJob</span>       <span class="c1"># 作业在调度系统中的作业名为myFirstJob;</span>
 <span class="o">--</span><span class="n">nodes</span><span class="o">=</span><span class="mi">1</span>           <span class="c1"># 申请节点数为1,如果作业不能跨节点(MPI)运行, 申请的节点数应不超过1;</span>
-<span class="o">--</span><span class="n">ntasks</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># 每个节点上运行一个任务，默认一情况下也可理解为每个节点使用一个核心，如果程序不支持多线程(如openmp)，这个数不应该超过1；</span>
+<span class="o">--</span><span class="n">ntasks</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">node</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># 每个节点上运行1个任务，默认情况下也可理解为每个节点使用1个核心，如果程序不支持多线程(如openmp)，这个数不应该超过1；</span>
+<span class="o">--</span><span class="n">cpus</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">task</span><span class="o">=</span><span class="mi">2</span> <span class="c1"># 每个任务需要2个核心，默认情况下为1个核心。</span>
 </pre></div>
 </div>
 <p>其中：</p>
@@ -143,6 +147,7 @@
 </li>
 </ul>
 </section>
+<hr class="docutils" />
 <section id="id2">
 <h2><strong>除此之外，还有一些常见的参数</strong><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">help</span>    <span class="c1"># 显示帮助信息；</span>
@@ -165,6 +170,7 @@
 </pre></div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="gpu">
 <h2><strong>一个GPU作业的例子</strong><a class="headerlink" href="#gpu" title="Permalink to this heading"></a></h2>
 <p><strong>请注意，GPU节点请按照 GPU:CPU = 1:16 的比例提交任务</strong></p>
@@ -175,7 +181,8 @@
 <span class="c1">#SBATCH --partition=gpu</span>
 <span class="c1">#SBATCH -J myFirstGPUJob</span>
 <span class="c1">#SBATCH --nodes=1             </span>
-<span class="c1">#SBATCH --ntasks-per-node=16</span>
+<span class="c1">#SBATCH --ntasks-per-node=1</span>
+<span class="c1">#SBATCH --cpus-per-task=16</span>
 <span class="c1">#SBATCH --gres=gpu:1             </span>
 
 <span class="n">nvidia</span><span class="o">-</span><span class="n">smi</span>
@@ -190,16 +197,39 @@
 </li>
 </ul>
 </section>
+<hr class="docutils" />
 <section id="id3">
-<h2><strong>一个跨节点多核心的例子</strong><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
+<h2><strong>一个批量并行作业的例子</strong><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <ul>
-<li><p>假设我们想用两个节点，每个节点32个核心来运行vasp，那么可以这么编写作业脚本</p>
+<li><p>假设我们想用2个节点，同时运行1个不同的任务，且每个任务需要2个CPU核心，那么可以这么编写作业脚本</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH -o job.%j.out</span>
+<span class="c1">#SBATCH -p compute</span>
+<span class="c1">#SBATCH -J myParallelJob</span>
+<span class="c1">#SBATCH --nodes=2</span>
+<span class="c1">#SBATCH --ntasks-per-node=1</span>
+<span class="c1">#SBATCH --cpus-per-task=2</span>
+
+<span class="n">srun</span> <span class="o">--</span><span class="n">ntasks</span><span class="o">=</span><span class="mi">1</span> <span class="n">sleep</span> <span class="mi">10</span> <span class="o">&amp;</span> 
+<span class="n">srun</span> <span class="o">--</span><span class="n">ntasks</span><span class="o">=</span><span class="mi">1</span> <span class="n">sleep</span> <span class="mi">12</span> <span class="o">&amp;</span>
+</pre></div>
+</div>
+</li>
+<li><p>每个任务都会继承<code class="docutils literal notranslate"><span class="pre">sbatch</span></code>脚本指定的参数。这就是为什么需要为每个<code class="docutils literal notranslate"><span class="pre">srun</span></code>任务需要指定–ntask=1。否则每个任务都使用–ntask=2，这会导致在第一个任务完成之前，第二个命令不会运行。</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="id4">
+<h2><strong>一个跨节点多核心的例子</strong><a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
+<ul>
+<li><p>假设我们想用2个节点，每节点4个进程，每个进程使用<code class="docutils literal notranslate"><span class="pre">OpenMP</span></code>运行8个线程，一共64个CPU核来运行vasp，那么可以这么编写作业脚本</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#SBATCH -o job.%j.out</span>
 <span class="c1">#SBATCH --partition=compute</span>
 <span class="c1">#SBATCH -J myFirstMPIJob</span>
 <span class="c1">#SBATCH --nodes=2</span>
-<span class="c1">#SBATCH --ntasks-per-node=32</span>
+<span class="c1">#SBATCH --ntasks-per-node=4</span>
+<span class="c1">#SBATCH --cpus-per-task=8</span>
 
 <span class="c1"># 导入MPI运行环境</span>
 <span class="n">module</span> <span class="n">load</span> <span class="n">openmpi4</span><span class="o">/</span><span class="mf">4.1.1</span>

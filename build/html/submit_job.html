@@ -12,8 +12,10 @@
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
@@ -34,7 +36,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.1
+                v1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -86,12 +88,12 @@
 </font></p>
 <p>运行作业的方式有两种：</p>
 <ul class="simple">
-<li><p>一种是将计算过程写成脚本，通过sbatch指令提交到计算节点执行</p></li>
-<li><p>另一种是通过salloc申请到计算节点，再ssh连接到计算节点进行计算</p></li>
-<li><p>通过sinfo查看计算节点空闲状态</p></li>
-<li><p>可以通过squeue查看已经提交作业的排队情况</p></li>
-<li><p>通过scontrol show job 和sacct查询作业的相关信息</p></li>
-<li><p>通过scancel取消已经提交的作业</p></li>
+<li><p>一种是将计算过程写成脚本，通过<code class="docutils literal notranslate"><span class="pre">sbatch</span></code>指令提交到计算节点执行</p></li>
+<li><p>另一种是通过<code class="docutils literal notranslate"><span class="pre">salloc</span></code>申请到计算节点，再ssh连接到计算节点进行计算</p></li>
+<li><p>通过<code class="docutils literal notranslate"><span class="pre">sinfo</span></code>查看计算节点空闲状态</p></li>
+<li><p>可以通过<code class="docutils literal notranslate"><span class="pre">squeue</span></code>查看已经提交作业的排队情况</p></li>
+<li><p>通过<code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">show</span> <span class="pre">job</span></code>和<code class="docutils literal notranslate"><span class="pre">sacct</span></code>查询作业的相关信息</p></li>
+<li><p>通过<code class="docutils literal notranslate"><span class="pre">scancel</span></code>取消已经提交的作业</p></li>
 </ul>
 <p><strong>关于作业调度系统的具体操作，请访问 <a class="reference external" href="./software/slurm/slurm.html">软件-Slurm使用帮助</a> 页面</strong></p>
 </section>

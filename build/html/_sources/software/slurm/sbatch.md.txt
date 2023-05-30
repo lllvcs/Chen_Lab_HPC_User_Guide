@@ -2,8 +2,6 @@
 
 将整个计算过程，写到脚本中，通过`sbatch`指令提交到计算节点上执行
 
-先介绍一个简单的例子，随后介绍例子中涉及的参数，接着介绍`sbatch`其他一些常见参数，最后再介绍GPU和MPI跨节点作业案例。
-
 ----
 
 ## **一个简单的例子**
@@ -17,6 +15,7 @@
    #SBATCH -J myFirstJob
    #SBATCH --nodes=1 
    #SBATCH --ntasks-per-node=1
+   #SBATCH --cpus-per-task=2
    
    hostname
    ```
@@ -34,12 +33,15 @@
    -p compute       # 作业提交的指定分区为compute；
    -J myFirstJob       # 作业在调度系统中的作业名为myFirstJob;
    --nodes=1           # 申请节点数为1,如果作业不能跨节点(MPI)运行, 申请的节点数应不超过1;
-   --ntasks-per-node=1 # 每个节点上运行一个任务，默认一情况下也可理解为每个节点使用一个核心，如果程序不支持多线程(如openmp)，这个数不应该超过1；
+   --ntasks-per-node=1 # 每个节点上运行1个任务，默认情况下也可理解为每个节点使用1个核心，如果程序不支持多线程(如openmp)，这个数不应该超过1；
+   --cpus-per-task=2 # 每个任务需要2个核心，默认情况下为1个核心。
    ```
 
    其中：
    
    `-p` 指定作业的运行分区，提交作业时必须指定分区，每个分区有不同的属性，如普通计算节点`compute`分区，每个节点核心数为32，内存为384G，通过以下命令可以查看对应集群可用分区，也可以通过`sinfo`查看分区的空闲状态；
+
+   ----
 
 ## **除此之外，还有一些常见的参数**
 
@@ -63,6 +65,8 @@
 -x, --exclude=<node name list>   # 排除指定的节点；
 ```
 
+----
+
 ## **一个GPU作业的例子**
 
 **请注意，GPU节点请按照 GPU:CPU = 1:16 的比例提交任务**
@@ -73,7 +77,8 @@
    #SBATCH --partition=gpu
    #SBATCH -J myFirstGPUJob
    #SBATCH --nodes=1             
-   #SBATCH --ntasks-per-node=16
+   #SBATCH --ntasks-per-node=1
+   #SBATCH --cpus-per-task=16
    #SBATCH --gres=gpu:1             
    
    nvidia-smi
@@ -86,9 +91,32 @@
    #SBATCH --gres=gpu:1         # 每个节点上申请一块GPU卡
    ```
 
+----
+
+## **一个批量并行作业的例子**
+
++ 假设我们想用2个节点，同时运行1个不同的任务，且每个任务需要2个CPU核心，那么可以这么编写作业脚本
+
+   ```
+   #!/bin/bash
+   #SBATCH -o job.%j.out
+   #SBATCH -p compute
+   #SBATCH -J myParallelJob
+   #SBATCH --nodes=2
+   #SBATCH --ntasks-per-node=1
+   #SBATCH --cpus-per-task=2
+   
+   srun --ntasks=1 sleep 10 & 
+   srun --ntasks=1 sleep 12 &
+   ```
+
++ 每个任务都会继承`sbatch`脚本指定的参数。这就是为什么需要为每个`srun`任务需要指定--ntask=1。否则每个任务都使用--ntask=2，这会导致在第一个任务完成之前，第二个命令不会运行。
+
+----
+
 ## **一个跨节点多核心的例子**
 
-+ 假设我们想用两个节点，每个节点32个核心来运行vasp，那么可以这么编写作业脚本
++ 假设我们想用2个节点，每节点4个进程，每个进程使用`OpenMP`运行8个线程，一共64个CPU核来运行vasp，那么可以这么编写作业脚本
    
    ```
    #!/bin/bash
@@ -96,7 +124,8 @@
    #SBATCH --partition=compute
    #SBATCH -J myFirstMPIJob
    #SBATCH --nodes=2
-   #SBATCH --ntasks-per-node=32
+   #SBATCH --ntasks-per-node=4
+   #SBATCH --cpus-per-task=8
    
    # 导入MPI运行环境
    module load openmpi4/4.1.1

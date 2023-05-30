@@ -12,8 +12,10 @@
   <![endif]-->
   
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="about.html" />
     <link rel="index" title="Index" href="genindex.html" />
@@ -34,7 +36,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.1
+                v1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -135,8 +137,8 @@
 <font size=5><p><strong>集群安装了常见的计算软件，可以通过module指令导入计算环境</strong>
 </font></p>
 <ul class="simple">
-<li><p><strong><a class="reference external" href="./software/module/module.html#id3">推荐使用module加载conda进行环境和软件包管理</a>，避免重复安装conda软件</strong></p></li>
-<li><p>可以通过module加载平台上装有的软件环境，也可以自行安装配置需要的计算环境，下面的作业脚本加载了<code class="docutils literal notranslate"><span class="pre">plink/1.90</span></code>的软件环境，具体可用的软件环境可使用命令<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code>指令进行查看。</p></li>
+<li><p><strong><a class="reference external" href="./software/module/module.html#id3">推荐使用module加载conda进行环境和软件包管理</a>，避免重复安装conda等软件</strong></p></li>
+<li><p>可以通过<code class="docutils literal notranslate"><span class="pre">module</span></code>加载平台上装有的软件环境，也可以自行安装配置需要的计算环境，下面的作业脚本加载了<code class="docutils literal notranslate"><span class="pre">plink/1.90</span></code>的软件环境，具体可用的软件环境可使用命令<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code>指令进行查看。</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#SBATCH -o job.%j.out</span>

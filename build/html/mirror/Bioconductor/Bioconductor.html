@@ -12,8 +12,10 @@
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -34,7 +36,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.1
+                v1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -55,7 +57,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../index.html">镜像</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../anaconda/anaconda.html">Anaconda镜像使用帮助</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../CRAN/CRAN.html">CRAN镜像使用帮助</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Bioconductor镜像使用帮助</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Bioconductor镜像使用帮助</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">安装与使用Bioconductor</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../about.html">关于</a></li>
@@ -95,16 +100,28 @@
 <ul>
 <li><p><strong>校园网：</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">options</span><span class="p">(</span><span class="n">BioC_mirror</span><span class="o">=</span><span class="s2">&quot;http://10.20.252.4/bioconductor&quot;</span><span class="p">)</span>
+<span class="n">options</span><span class="p">(</span><span class="n">BIOCONDUCTOR_CONFIG_FILE</span><span class="o">=</span><span class="s2">&quot;http://10.20.252.4/bioconductor/config.yaml&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p><strong>HPC集群：</strong></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">options</span><span class="p">(</span><span class="n">BioC_mirror</span><span class="o">=</span><span class="s2">&quot;http://mirrors/bioconductor&quot;</span><span class="p">)</span>
+<span class="n">options</span><span class="p">(</span><span class="n">BIOCONDUCTOR_CONFIG_FILE</span><span class="o">=</span><span class="s2">&quot;http://mirrors/bioconductor/config.yaml&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 </ul>
 <p>打开R即可使用该 Bioconductor 镜像源安装 Bioconductor 软件包。</p>
+<hr class="docutils" />
+<section id="id1">
+<h2>安装与使用Bioconductor<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>命令如下：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>if (!requireNamespace(&quot;BiocManager&quot;, quietly = TRUE))
+    install.packages(&quot;BiocManager&quot;)
+BiocManager::install(&quot;$package_name&quot;)
+</pre></div>
+</div>
+</section>
 </section>
 
 

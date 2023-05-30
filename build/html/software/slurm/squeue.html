@@ -12,8 +12,10 @@
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -34,7 +36,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.1
+                v1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -108,7 +110,6 @@
   <section id="squeue">
 <h1>squeue<a class="headerlink" href="#squeue" title="Permalink to this heading"></a></h1>
 <p>通过<code class="docutils literal notranslate"><span class="pre">squeue</span></code>查看提交作业的排队情况，包括作业的状态、运行时间、运行节点等信息</p>
-<p>这里介绍了几个使用案例，首先是显示队列中所有的作业；随后介绍如何显示队列中自己的作业；接着介绍如何按照自己的格式要求显示作业信息；最后介绍<code class="docutils literal notranslate"><span class="pre">squeue</span></code>的常见参数。</p>
 <hr class="docutils" />
 <section id="id1">
 <h2><strong>显示队列中所有的作业<code class="docutils literal notranslate"><span class="pre">squeue</span></code></strong><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
@@ -117,6 +118,7 @@
 </pre></div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="id2">
 <h2><strong>在队列中显示自己的作业</strong><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># 注意whoami前后不是单引号
@@ -124,12 +126,14 @@ squeue -u `whoami`
 </pre></div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="id3">
 <h2><strong>按照自己的格式要求显示队列信息</strong><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>squeue -o &quot;%.18i %.9P %.12j %.12u %.12T %.12M %.16l %.6D %R&quot; -u $USER
 </pre></div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="id4">
 <h2><strong><code class="docutils literal notranslate"><span class="pre">squeue</span></code>的常见参数</strong><a class="headerlink" href="#id4" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">help</span>    <span class="c1"># 显示squeue命令的使用帮助信息；</span>

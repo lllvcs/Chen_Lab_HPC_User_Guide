@@ -2,7 +2,7 @@
 
 <font size=5>
 
-**如在使用过程中遇到问题，可通过邮件联系我们：`hpc_life@ucas.ac.cn`**
+**如在使用过程中遇到问题，可通过邮件联系我们：<hpc_life@ucas.ac.cn>**
 </font>
 <font size=5>
 

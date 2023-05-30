@@ -12,8 +12,10 @@
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -34,7 +36,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.1
+                v1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -108,7 +110,6 @@
   <section id="scancel">
 <h1>scancel<a class="headerlink" href="#scancel" title="Permalink to this heading"></a></h1>
 <p>通过<code class="docutils literal notranslate"><span class="pre">scancel</span></code>取消队列中已提交的作业</p>
-<p>介绍几个使用使用案例，分别是，取消指定作业、取消自己上机账号上所有作业、取消自己上机账号上所有状态为PENDING的作业，最后介绍<code class="docutils literal notranslate"><span class="pre">scancel</span></code>常见的参数。</p>
 <hr class="docutils" />
 <section id="id1">
 <h2><strong>取消指定作业</strong><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
@@ -117,6 +118,7 @@
 </pre></div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="id2">
 <h2><strong>取消自己上机上号上所有作业</strong><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># 注意whoami前后不是单引号
@@ -124,6 +126,7 @@ scancel -u `whoami`
 </pre></div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="pending">
 <h2><strong>取消自己上机账号上所有状态为PENDING的作业</strong><a class="headerlink" href="#pending" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span># 注意whoami前后不是单引号
@@ -131,6 +134,7 @@ scancel -t PENDING -u `whoami`
 </pre></div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="id3">
 <h2><strong>scancel常见参数</strong><a class="headerlink" href="#id3" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--</span><span class="n">help</span>                <span class="c1"># 显示scancel命令的使用帮助信息；</span>

@@ -12,8 +12,10 @@
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -34,7 +36,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.1
+                v1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -173,9 +175,7 @@ echo &quot;export PATH=/opt/singularity/${VERSION}/bin:\$PATH&quot; &gt;&gt; /et
 <hr class="docutils" />
 <p>同时，集群上也可以构建Singularity软件镜像，用户可以在节点上使用fakeroot安装软件镜像，具体方式如下</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># 登录节点</span>
-<span class="n">ssh</span> <span class="o">&lt;</span><span class="n">user_name</span><span class="o">&gt;@</span><span class="mf">10.20.252.1</span>
-<span class="n">或</span>
-<span class="n">ssh</span> <span class="o">&lt;</span><span class="n">user_name</span><span class="o">&gt;@</span><span class="mf">10.20.252.2</span>
+<span class="n">ssh</span> <span class="o">&lt;</span><span class="n">user_name</span><span class="o">&gt;@&lt;</span><span class="n">login_node_IP</span><span class="o">&gt;</span>
 
 <span class="c1"># 申请计算节点资源</span>
 <span class="n">salloc</span> <span class="o">-</span><span class="n">N</span> <span class="mi">1</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span> <span class="o">-</span><span class="n">p</span> <span class="o">&lt;</span><span class="n">partition</span><span class="o">&gt;</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span>

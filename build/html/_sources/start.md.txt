@@ -64,8 +64,8 @@ hostname
 **集群安装了常见的计算软件，可以通过module指令导入计算环境**
 </font>
 
-+ **[推荐使用module加载conda进行环境和软件包管理](./software/module/module.html#id3)，避免重复安装conda软件**
-+ 可以通过module加载平台上装有的软件环境，也可以自行安装配置需要的计算环境，下面的作业脚本加载了`plink/1.90`的软件环境，具体可用的软件环境可使用命令`module avail`指令进行查看。
++ **[推荐使用module加载conda进行环境和软件包管理](./software/module/module.html#id3)，避免重复安装conda等软件**
++ 可以通过`module`加载平台上装有的软件环境，也可以自行安装配置需要的计算环境，下面的作业脚本加载了`plink/1.90`的软件环境，具体可用的软件环境可使用命令`module avail`指令进行查看。
 
 ```
 #!/bin/bash

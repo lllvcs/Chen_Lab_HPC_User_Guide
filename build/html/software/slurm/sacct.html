@@ -12,8 +12,10 @@
   <![endif]-->
   
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="author" title="About these documents" href="../../about.html" />
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -34,7 +36,7 @@
             Chen Lab HPC User Guide
           </a>
               <div class="version">
-                v1.1
+                v1.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -107,7 +109,6 @@
   <section id="sacct">
 <h1>sacct<a class="headerlink" href="#sacct" title="Permalink to this heading"></a></h1>
 <p>通过<code class="docutils literal notranslate"><span class="pre">sacct</span></code>和<code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">show</span> <span class="pre">job</span></code>显示作业信息</p>
-<p>先介绍通过<code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">show</span> <span class="pre">job</span></code>显示作业信息；随后介绍通过<code class="docutils literal notranslate"><span class="pre">sacct</span></code>显示作业信息；最后介绍通过<code class="docutils literal notranslate"><span class="pre">saact</span></code>按指定格式输出作业信息。</p>
 <hr class="docutils" />
 <section id="scontrol-show-job">
 <h2><strong>通过<code class="docutils literal notranslate"><span class="pre">scontrol</span> <span class="pre">show</span> <span class="pre">job</span></code>显示作业信息</strong><a class="headerlink" href="#scontrol-show-job" title="Permalink to this heading"></a></h2>
@@ -117,6 +118,7 @@
 </pre></div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="id1">
 <h2><strong>通过<code class="docutils literal notranslate"><span class="pre">sacct</span></code>显示作业信息</strong><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>通过<code class="docutils literal notranslate"><span class="pre">sacct</span></code>查询已经结束作业的相关信息</p>
@@ -128,6 +130,7 @@
 </pre></div>
 </div>
 </section>
+<hr class="docutils" />
 <section id="id2">
 <h2><strong>通过sacct按照指定格式输出作业信息</strong><a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>squeue -o &quot;%.18i %.9P %.12j %.12u %.12T %.12M %.16l %.6D %R&quot; -u $USER

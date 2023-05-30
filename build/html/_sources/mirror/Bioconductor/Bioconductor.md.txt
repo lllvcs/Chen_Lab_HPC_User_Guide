@@ -11,12 +11,24 @@ Bioconductor 为高通量基因组数据的分析和可视化提供开源工具�
 
    ```
    options(BioC_mirror="http://10.20.252.4/bioconductor")
+   options(BIOCONDUCTOR_CONFIG_FILE="http://10.20.252.4/bioconductor/config.yaml")
    ````
 
 + **HPC集群：**
 
    ```
    options(BioC_mirror="http://mirrors/bioconductor")
+   options(BIOCONDUCTOR_CONFIG_FILE="http://mirrors/bioconductor/config.yaml")
    ```
 
 打开R即可使用该 Bioconductor 镜像源安装 Bioconductor 软件包。
+
+----
+## 安装与使用Bioconductor
+
+命令如下：
+```
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("$package_name")
+```
