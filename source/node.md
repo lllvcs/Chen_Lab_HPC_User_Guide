@@ -14,4 +14,5 @@
 | compute | SD530 | 30 | 2*Intel(R) Xeon(R) Gold 6226R CPU @ 2.90GHz | 384G | 无 | 无 | 无 |
 | big | SD530 | 24 | 2*Intel(R) Xeon(R) Gold 6226R CPU @ 2.90GHz | 768G | 无 | 无 | 无 |
 | fat | SR950 | 1 | 8*Intel(R) Xeon(R) Platinum 8260 CPU @ 2.40GHz | 8192G | 无 | 无 | 无 |
-| gpu | SR650 | 5 | 2*Intel(R) Xeon(R) Gold 6226R CPU @ 2.90GHz | 512G | 2*NVIDIA GeForce RTX 3080 Ti | 12G | 515.43.04 with CUDA11.7 |
+| gpu | SR650 | 5 | 2*Intel(R) Xeon(R) Gold 6226R CPU @ 2.90GHz | 512G | 2*NVIDIA GeForce RTX 3080 Ti | 2*12G | 550.54.15 with CUDA12.4 |
+| private-gp01 | MicroStar | 1 | 1*AMD EPYC 7542 32-Core Processor @ 2.90GHz | 256G | 4*NVIDIA GeForce RTX 4090 D | 4*24G | 550.54.15 with CUDA12.4 |
